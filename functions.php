@@ -67,6 +67,26 @@ function ccx_register_page_templates( $templates ) {
 	$templates['page-tmuc.php']             = __( 'EduApply — TMUC', 'campus-compass' );
 	$templates['page-bahria.php']           = __( 'EduApply — Bahria University', 'campus-compass' );
 	$templates['page-apply.php']            = __( 'EduApply — Admission Application', 'campus-compass' );
+
+	$templates['page-ucp-merit-list.php']       = __( 'EduApply — UCP Merit List', 'campus-compass' );
+	$templates['page-ucp-fee-structure.php']    = __( 'EduApply — UCP Fee Structure', 'campus-compass' );
+	$templates['page-ucp-fee-chalan.php']       = __( 'EduApply — UCP Fee Chalan', 'campus-compass' );
+	$templates['page-bims-merit-list.php']      = __( 'EduApply — BIMS Merit List', 'campus-compass' );
+	$templates['page-bims-fee-structure.php']   = __( 'EduApply — BIMS Fee Structure', 'campus-compass' );
+	$templates['page-bims-fee-chalan.php']      = __( 'EduApply — BIMS Fee Chalan', 'campus-compass' );
+	$templates['page-uor-merit-list.php']       = __( 'EduApply — UOR Merit List', 'campus-compass' );
+	$templates['page-uor-fee-structure.php']    = __( 'EduApply — UOR Fee Structure', 'campus-compass' );
+	$templates['page-uor-fee-chalan.php']       = __( 'EduApply — UOR Fee Chalan', 'campus-compass' );
+	$templates['page-numl-merit-list.php']      = __( 'EduApply — NUML Merit List', 'campus-compass' );
+	$templates['page-numl-fee-structure.php']   = __( 'EduApply — NUML Fee Structure', 'campus-compass' );
+	$templates['page-numl-fee-chalan.php']      = __( 'EduApply — NUML Fee Chalan', 'campus-compass' );
+	$templates['page-tmuc-merit-list.php']      = __( 'EduApply — TMUC Merit List', 'campus-compass' );
+	$templates['page-tmuc-fee-structure.php']   = __( 'EduApply — TMUC Fee Structure', 'campus-compass' );
+	$templates['page-tmuc-fee-chalan.php']      = __( 'EduApply — TMUC Fee Chalan', 'campus-compass' );
+	$templates['page-bahria-merit-list.php']    = __( 'EduApply — Bahria Merit List', 'campus-compass' );
+	$templates['page-bahria-fee-structure.php'] = __( 'EduApply — Bahria Fee Structure', 'campus-compass' );
+	$templates['page-bahria-fee-chalan.php']    = __( 'EduApply — Bahria Fee Chalan', 'campus-compass' );
+
 	return $templates;
 }
 add_filter( 'theme_page_templates', 'ccx_register_page_templates' );
@@ -77,3 +97,9 @@ add_filter( 'theme_page_templates', 'ccx_register_page_templates' );
  * PHPMailer, webhook POST, and the leads.csv fallback log.
  */
 require_once get_template_directory() . '/inc/admission-handler.php';
+
+/**
+ * Central registry of Merit List / Fee Structure PDF URLs, one place to
+ * update per admission cycle. See inc/resource-documents.php.
+ */
+require_once get_template_directory() . '/inc/resource-documents.php';

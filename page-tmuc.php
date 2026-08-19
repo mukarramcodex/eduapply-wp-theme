@@ -629,6 +629,14 @@
           </div>
         </div>
       </li>
+      <li>
+        <a href="#" aria-haspopup="true">Admissions <svg class="tmuc-caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="tmuc-dropdown">
+          <a href="/tmuc-fee-structure">Fee Structure</a>
+          <a href="/tmuc-merit-list">Merit List</a>
+          <a href="/tmuc-fee-chalan">Fee Chalan</a>
+        </div>
+      </li>
       <li><a href="#">Life at TMUC</a></li>
       <li><a href="#">Student Services</a></li>
       <li><a href="#">Careers</a></li>
@@ -672,6 +680,14 @@
         <a href="#">School of Creative Arts</a>
         <a href="#">School of Computing &amp; Emerging Tech</a>
         <a href="#">Faculty of Laws</a>
+      </div>
+    </li>
+    <li>
+      <a href="#">Admissions</a>
+      <div class="tmuc-mobile-sub">
+        <a href="/tmuc-fee-structure">Fee Structure</a>
+        <a href="/tmuc-merit-list">Merit List</a>
+        <a href="/tmuc-fee-chalan">Fee Chalan</a>
       </div>
     </li>
     <li><a href="#">Life at TMUC</a></li>

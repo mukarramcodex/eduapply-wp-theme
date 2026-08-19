@@ -864,7 +864,9 @@
           <a href="#">Sample Papers</a>
           <a href="#">Scholarships</a>
           <a href="#">Offered Programs</a>
-          <a href="#">Fee Structure</a>
+          <a href="/ucp-fee-structure">Fee Structure</a>
+          <a href="/ucp-merit-list">Merit List</a>
+          <a href="/ucp-fee-chalan">Fee Chalan</a>
           <a href="#">Apply Online</a>
         </div>
       </li>
@@ -947,7 +949,9 @@
       <a href="#">Admissions</a>
       <div class="ucp-mobile-sub">
         <a href="#">How To Apply</a>
-        <a href="#">Fee Structure</a>
+        <a href="/ucp-fee-structure">Fee Structure</a>
+        <a href="/ucp-merit-list">Merit List</a>
+        <a href="/ucp-fee-chalan">Fee Chalan</a>
         <a href="#">Scholarships</a>
         <a href="#">Apply Online</a>
       </div>

@@ -661,7 +661,9 @@
           <div class="numl-dropdown-group">
             <p class="numl-dropdown-label">Admissions</p>
             <a href="#">Online Admissions</a>
-            <a href="#">Fee Structure</a>
+            <a href="/numl-fee-structure">Fee Structure</a>
+            <a href="/numl-merit-list">Merit List</a>
+            <a href="/numl-fee-chalan">Fee Chalan</a>
             <a href="#">Eligibility Criteria</a>
             <a href="#">Admission Schedule</a>
           </div>
@@ -742,6 +744,9 @@
         <a href="#">Graduate Programs</a>
         <a href="#">PhD Programs</a>
         <a href="#">Online Admissions</a>
+        <a href="/numl-fee-structure">Fee Structure</a>
+        <a href="/numl-merit-list">Merit List</a>
+        <a href="/numl-fee-chalan">Fee Chalan</a>
       </div>
     </li>
     <li><a href="#">Offices</a></li>
