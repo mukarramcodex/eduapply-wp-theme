@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ============================================================
  * ADMISSION APPLICATION — AJAX HANDLER
@@ -41,7 +42,7 @@
  * ============================================================
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit;
 }
 
@@ -49,24 +50,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 // CONFIG — fill these in before going live
 // ============================================================
 // TODO: SMTP server details (ask your email/hosting provider if unsure).
-define( 'CCX_SMTP_HOST', 'smtp.hostinger.com' );        // e.g. smtp.gmail.com, smtp.office365.com
-define( 'CCX_SMTP_PORT', 465 );                           // 587 = STARTTLS, 465 = SSL
-define( 'CCX_SMTP_SECURE', 'ssl' );                        // 'tls' or 'ssl'
-define( 'CCX_SMTP_USERNAME', 'apply@eduapply.online' );     // TODO: your SMTP username
-define( 'CCX_SMTP_PASSWORD', 'ZYx123!@#$%' ); // TODO: your SMTP password / app password
+define('CCX_SMTP_HOST', 'smtp.hostinger.com');        // e.g. smtp.gmail.com, smtp.office365.com
+define('CCX_SMTP_PORT', 465);                           // 587 = STARTTLS, 465 = SSL
+define('CCX_SMTP_SECURE', 'ssl');                        // 'tls' or 'ssl'
+define('CCX_SMTP_USERNAME', 'apply@eduapply.online');     // TODO: your SMTP username
+define('CCX_SMTP_PASSWORD', 'ZYx123!@#$%'); // TODO: your SMTP password / app password
 
 // TODO: who the application email is "from" and "to".
-define( 'CCX_MAIL_FROM_ADDRESS', 'apply@eduapply.online' );
-define( 'CCX_MAIL_FROM_NAME', 'EduApply Admissions' );
-define( 'CCX_MAIL_TO_ADDRESS', 'apply@eduapply.online' );   // where applications land
-define( 'CCX_MAIL_TO_NAME', 'Admissions Team' );
+define('CCX_MAIL_FROM_ADDRESS', 'apply@eduapply.online');
+define('CCX_MAIL_FROM_NAME', 'EduApply Admissions');
+define('CCX_MAIL_TO_ADDRESS', 'apply@eduapply.online');   // where applications land
+define('CCX_MAIL_TO_NAME', 'Admissions Team');
 
 // TODO: your webhook URL for lead tracking (Zapier / Make / CRM / custom).
 // Leave blank ('') to skip the webhook POST entirely.
-define( 'CCX_WEBHOOK_URL', '' );
+define('CCX_WEBHOOK_URL', '');
 
-define( 'CCX_MAX_FILE_SIZE_BYTES', 5 * 1024 * 1024 ); // 5MB, matches the frontend
-define( 'CCX_ALLOWED_MIME_TYPES', array( 'application/pdf', 'image/jpeg', 'image/png' ) );
+define('CCX_MAX_FILE_SIZE_BYTES', 5 * 1024 * 1024); // 5MB, matches the frontend
+define('CCX_ALLOWED_MIME_TYPES', array('application/pdf', 'image/jpeg', 'image/png'));
 
 // ============================================================
 // Do not edit below this line unless you know what you're doing
@@ -78,19 +79,21 @@ define( 'CCX_ALLOWED_MIME_TYPES', array( 'application/pdf', 'image/jpeg', 'image
  * theme updates, and outside the web-servable document areas WordPress
  * itself already protects by default.
  */
-function ccx_admission_storage_dir() {
+function ccx_admission_storage_dir()
+{
 	$upload_dir = wp_upload_dir();
-	$path       = trailingslashit( $upload_dir['basedir'] ) . 'ccx-admissions/';
-	if ( ! file_exists( $path ) ) {
-		wp_mkdir_p( $path );
+	$path       = trailingslashit($upload_dir['basedir']) . 'ccx-admissions/';
+	if (! file_exists($path)) {
+		wp_mkdir_p($path);
 		// Block directory listing / PHP execution inside this folder.
-		file_put_contents( $path . '.htaccess', "Options -Indexes\nphp_flag engine off\n" );
-		file_put_contents( $path . 'index.php', "<?php\n// Silence is golden.\n" );
+		file_put_contents($path . '.htaccess', "Options -Indexes\nphp_flag engine off\n");
+		file_put_contents($path . 'index.php', "<?php\n// Silence is golden.\n");
 	}
 	return $path;
 }
 
-function ccx_leads_csv_path() {
+function ccx_leads_csv_path()
+{
 	return ccx_admission_storage_dir() . 'leads.csv';
 }
 
@@ -99,126 +102,140 @@ function ccx_leads_csv_path() {
  * wp_ajax_nopriv_ for the general public (prospective students aren't
  * logged into WordPress, so both are required).
  */
-add_action( 'wp_ajax_ccx_submit_admission', 'ccx_handle_admission_submission' );
-add_action( 'wp_ajax_nopriv_ccx_submit_admission', 'ccx_handle_admission_submission' );
+add_action('wp_ajax_ccx_submit_admission', 'ccx_handle_admission_submission');
+add_action('wp_ajax_nopriv_ccx_submit_admission', 'ccx_handle_admission_submission');
 
-function ccx_handle_admission_submission() {
-	check_ajax_referer( 'ccx_admission_nonce', 'nonce' );
+function ccx_handle_admission_submission()
+{
+	check_ajax_referer('ccx_admission_nonce', 'nonce');
 
 	// ---------- Required text fields ----------
 	$required_fields = array(
-		'fullName', 'fatherName', 'dob', 'cnic', 'gender', 'nationality',
-		'mobile', 'email', 'address', 'city', 'province',
-		'lastQualification', 'board', 'passingYear', 'totalMarks', 'obtainedMarks', 'rollNumber',
-		'university', 'program1', 'campus', 'studyMode', 'intake',
-		'parentName', 'relationship', 'parentMobile', 'profession', 'monthlyIncome',
+		'fullName',
+		'fatherName',
+		'dob',
+		'cnic',
+		'gender',
+		'nationality',
+		'mobile',
+		'email',
+		'address',
+		'city',
+		'province',
+		'lastQualification',
+		'board',
+		'passingYear',
+		'totalMarks',
+		'obtainedMarks',
+		'rollNumber',
+		'university',
+		'program1',
+		'campus',
 	);
 
 	$errors = array();
 	$data   = array();
-	foreach ( $required_fields as $field ) {
-		$value = isset( $_POST[ $field ] ) ? sanitize_text_field( wp_unslash( $_POST[ $field ] ) ) : '';
-		if ( '' === $value ) {
+	foreach ($required_fields as $field) {
+		$value = isset($_POST[$field]) ? sanitize_text_field(wp_unslash($_POST[$field])) : '';
+		if ('' === $value) {
 			$errors[] = "Missing required field: $field";
 		}
-		$data[ $field ] = $value;
+		$data[$field] = $value;
 	}
 
 	// Optional text fields
-	$optional_fields = array( 'maritalStatus', 'religion', 'postalCode', 'hearAbout', 'previousEducation', 'message', 'program2', 'program3', 'referrerUrl' );
-	foreach ( $optional_fields as $field ) {
-		$data[ $field ] = isset( $_POST[ $field ] ) ? sanitize_textarea_field( wp_unslash( $_POST[ $field ] ) ) : '';
+	$optional_fields = array('maritalStatus', 'religion', 'postalCode', 'hearAbout', 'previousEducation', 'message', 'program2', 'program3', 'referrerUrl');
+	foreach ($optional_fields as $field) {
+		$data[$field] = isset($_POST[$field]) ? sanitize_textarea_field(wp_unslash($_POST[$field])) : '';
 	}
 
-	if ( ! isset( $_POST['certify'] ) || 'on' !== $_POST['certify'] ) {
+	if (! isset($_POST['certify']) || 'on' !== $_POST['certify']) {
 		$errors[] = 'You must certify that the information provided is true and correct.';
 	}
 
-	if ( ! is_email( $data['email'] ) ) {
+	if (! is_email($data['email'])) {
 		$errors[] = 'Invalid email address.';
 	}
 
-	if ( ! empty( $errors ) ) {
-		wp_send_json_error( array( 'error' => implode( ' ', $errors ) ) );
+	if (! empty($errors)) {
+		wp_send_json_error(array('error' => implode(' ', $errors)));
 	}
 
 	// ---------- File uploads ----------
-	$required_files = array( 'cnic_file', 'photo_file', 'matric_cert_file', 'matric_result_file', 'inter_cert_file', 'inter_result_file' );
-	$optional_files = array( 'bachelor_degree_file', 'bachelor_transcript_file', 'domicile_file', 'other_file' );
-	$all_file_fields = array_merge( $required_files, $optional_files );
+	$required_files = array('cnic_file', 'photo_file', 'matric_cert_file', 'matric_result_file', 'inter_cert_file', 'inter_result_file');
+	$optional_files = array('bachelor_degree_file', 'bachelor_transcript_file', 'domicile_file', 'other_file');
+	$all_file_fields = array_merge($required_files, $optional_files);
 
-	foreach ( $required_files as $field ) {
-		if ( ! isset( $_FILES[ $field ] ) || UPLOAD_ERR_NO_FILE === $_FILES[ $field ]['error'] ) {
+	foreach ($required_files as $field) {
+		if (! isset($_FILES[$field]) || UPLOAD_ERR_NO_FILE === $_FILES[$field]['error']) {
 			$errors[] = "Missing required document: $field";
 		}
 	}
-	if ( ! empty( $errors ) ) {
-		wp_send_json_error( array( 'error' => implode( ' ', $errors ) ) );
+	if (! empty($errors)) {
+		wp_send_json_error(array('error' => implode(' ', $errors)));
 	}
 
 	$upload_dir  = ccx_admission_storage_dir();
-	$upload_url_base = trailingslashit( wp_upload_dir()['baseurl'] ) . 'ccx-admissions/';
+	$upload_url_base = trailingslashit(wp_upload_dir()['baseurl']) . 'ccx-admissions/';
 	$saved_files = array();
 
-	foreach ( $all_file_fields as $field ) {
-		if ( ! isset( $_FILES[ $field ] ) || UPLOAD_ERR_NO_FILE === $_FILES[ $field ]['error'] ) {
+	foreach ($all_file_fields as $field) {
+		if (! isset($_FILES[$field]) || UPLOAD_ERR_NO_FILE === $_FILES[$field]['error']) {
 			continue; // optional file not provided
 		}
-		$file = $_FILES[ $field ];
+		$file = $_FILES[$field];
 
-		if ( UPLOAD_ERR_OK !== $file['error'] ) {
+		if (UPLOAD_ERR_OK !== $file['error']) {
 			$errors[] = "Upload error for $field.";
 			continue;
 		}
-		if ( $file['size'] > CCX_MAX_FILE_SIZE_BYTES ) {
+		if ($file['size'] > CCX_MAX_FILE_SIZE_BYTES) {
 			$errors[] = "$field exceeds the 5MB size limit.";
 			continue;
 		}
-		$mime = function_exists( 'mime_content_type' ) ? mime_content_type( $file['tmp_name'] ) : '';
-		if ( ! $mime && function_exists( 'finfo_open' ) ) {
-			$finfo = finfo_open( FILEINFO_MIME_TYPE );
-			$mime  = finfo_file( $finfo, $file['tmp_name'] );
-			finfo_close( $finfo );
+		$mime = function_exists('mime_content_type') ? mime_content_type($file['tmp_name']) : '';
+		if (! $mime && function_exists('finfo_open')) {
+			$finfo = finfo_open(FILEINFO_MIME_TYPE);
+			$mime  = finfo_file($finfo, $file['tmp_name']);
+			finfo_close($finfo);
 		}
-		if ( ! in_array( $mime, CCX_ALLOWED_MIME_TYPES, true ) ) {
+		if (! in_array($mime, CCX_ALLOWED_MIME_TYPES, true)) {
 			$errors[] = "$field has an unsupported file type.";
 			continue;
 		}
 
-		$ext       = pathinfo( $file['name'], PATHINFO_EXTENSION );
-		$safe_name = $field . '_' . bin2hex( random_bytes( 6 ) ) . '.' . strtolower( $ext );
+		$ext       = pathinfo($file['name'], PATHINFO_EXTENSION);
+		$safe_name = $field . '_' . bin2hex(random_bytes(6)) . '.' . strtolower($ext);
 		$destination = $upload_dir . $safe_name;
 
-		if ( ! move_uploaded_file( $file['tmp_name'], $destination ) ) {
+		if (! move_uploaded_file($file['tmp_name'], $destination)) {
 			$errors[] = "Could not save uploaded file for $field.";
 			continue;
 		}
-		$saved_files[ $field ] = array(
+		$saved_files[$field] = array(
 			'path'          => $destination,
 			'url'           => $upload_url_base . $safe_name,
-			'original_name' => sanitize_file_name( $file['name'] ),
+			'original_name' => sanitize_file_name($file['name']),
 		);
 	}
 
-	if ( ! empty( $errors ) ) {
-		wp_send_json_error( array( 'error' => implode( ' ', $errors ) ) );
+	if (! empty($errors)) {
+		wp_send_json_error(array('error' => implode(' ', $errors)));
 	}
 
 	// ---------- Reference ID ----------
-	$reference_id = 'CC-' . gmdate( 'Ymd' ) . '-' . strtoupper( bin2hex( random_bytes( 3 ) ) );
+	$reference_id = 'CC-' . gmdate('Ymd') . '-' . strtoupper(bin2hex(random_bytes(3)));
 
 	// ---------- Compose the application summary ----------
 	$summary_lines = array(
 		"New Admission Application — Reference: $reference_id",
 		'',
 		"University: {$data['university']}",
-		"Landed From: " . ( $data['referrerUrl'] ?: '—' ),
+		"Landed From: " . ($data['referrerUrl'] ?: '—'),
 		"Programme Preference 1: {$data['program1']}",
-"Programme Preference 2: " . ( $data['program2'] ?: '—' ),
-"Programme Preference 3: " . ( $data['program3'] ?: '—' ),
+		"Programme Preference 2: " . ($data['program2'] ?: '—'),
+		"Programme Preference 3: " . ($data['program3'] ?: '—'),
 		"Campus: {$data['campus']}",
-		"Study Mode: {$data['studyMode']}",
-		"Intake: {$data['intake']}",
 		'',
 		'--- Personal Information ---',
 		"Full Name: {$data['fullName']}",
@@ -227,8 +244,8 @@ function ccx_handle_admission_submission() {
 		"CNIC/B-Form: {$data['cnic']}",
 		"Gender: {$data['gender']}",
 		"Nationality: {$data['nationality']}",
-		'Marital Status: ' . ( $data['maritalStatus'] ?: '—' ),
-		'Religion: ' . ( $data['religion'] ?: '—' ),
+		'Marital Status: ' . ($data['maritalStatus'] ?: '—'),
+		'Religion: ' . ($data['religion'] ?: '—'),
 		'',
 		'--- Contact Information ---',
 		"Mobile: {$data['mobile']}",
@@ -236,7 +253,7 @@ function ccx_handle_admission_submission() {
 		"Address: {$data['address']}",
 		"City: {$data['city']}",
 		"Province: {$data['province']}",
-		'Postal Code: ' . ( $data['postalCode'] ?: '—' ),
+		'Postal Code: ' . ($data['postalCode'] ?: '—'),
 		'',
 		'--- Academic Information ---',
 		"Last Qualification: {$data['lastQualification']}",
@@ -246,24 +263,17 @@ function ccx_handle_admission_submission() {
 		"Obtained Marks/CGPA: {$data['obtainedMarks']}",
 		"Roll Number: {$data['rollNumber']}",
 		'',
-		'--- Parent / Guardian Information ---',
-		"Name: {$data['parentName']}",
-		"Relationship: {$data['relationship']}",
-		"Mobile: {$data['parentMobile']}",
-		"Profession: {$data['profession']}",
-		"Monthly Income: {$data['monthlyIncome']}",
-		'',
 		'--- Additional Information ---',
-		'How did you hear about us: ' . ( $data['hearAbout'] ?: '—' ),
-		'Previous education at this university: ' . ( $data['previousEducation'] ?: '—' ),
-		'Message: ' . ( $data['message'] ?: '—' ),
+		'How did you hear about us: ' . ($data['hearAbout'] ?: '—'),
+		'Previous education at this university: ' . ($data['previousEducation'] ?: '—'),
+		'Message: ' . ($data['message'] ?: '—'),
 		'',
 		'--- Documents Uploaded ---',
 	);
-	foreach ( $saved_files as $field => $info ) {
+	foreach ($saved_files as $field => $info) {
 		$summary_lines[] = "$field: {$info['original_name']}";
 	}
-	$email_body = implode( "\n", $summary_lines );
+	$email_body = implode("\n", $summary_lines);
 
 	// ============================================================
 	// SEND EMAIL VIA AUTHENTICATED SMTP (PHPMailer)
@@ -275,19 +285,19 @@ function ccx_handle_admission_submission() {
 	$manual_phpmailer  = get_template_directory() . '/phpmailer/PHPMailer.php';
 
 	$phpmailer_available = false;
-	if ( file_exists( $composer_autoload ) ) {
+	if (file_exists($composer_autoload)) {
 		require_once $composer_autoload;
-		$phpmailer_available = class_exists( 'PHPMailer\\PHPMailer\\PHPMailer' );
-	} elseif ( file_exists( $manual_phpmailer ) ) {
+		$phpmailer_available = class_exists('PHPMailer\\PHPMailer\\PHPMailer');
+	} elseif (file_exists($manual_phpmailer)) {
 		require_once get_template_directory() . '/phpmailer/Exception.php';
 		require_once get_template_directory() . '/phpmailer/PHPMailer.php';
 		require_once get_template_directory() . '/phpmailer/SMTP.php';
-		$phpmailer_available = class_exists( 'PHPMailer\\PHPMailer\\PHPMailer' );
+		$phpmailer_available = class_exists('PHPMailer\\PHPMailer\\PHPMailer');
 	}
 
-	if ( $phpmailer_available ) {
+	if ($phpmailer_available) {
 		try {
-			$mail = new PHPMailer\PHPMailer\PHPMailer( true );
+			$mail = new PHPMailer\PHPMailer\PHPMailer(true);
 			$mail->isSMTP();
 			$mail->Host       = CCX_SMTP_HOST;
 			$mail->SMTPAuth   = true;
@@ -298,21 +308,21 @@ function ccx_handle_admission_submission() {
 				: PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
 			$mail->Port = CCX_SMTP_PORT;
 
-			$mail->setFrom( CCX_MAIL_FROM_ADDRESS, CCX_MAIL_FROM_NAME );
-			$mail->addAddress( CCX_MAIL_TO_ADDRESS, CCX_MAIL_TO_NAME );
-			$mail->addReplyTo( $data['email'], $data['fullName'] );
+			$mail->setFrom(CCX_MAIL_FROM_ADDRESS, CCX_MAIL_FROM_NAME);
+			$mail->addAddress(CCX_MAIL_TO_ADDRESS, CCX_MAIL_TO_NAME);
+			$mail->addReplyTo($data['email'], $data['fullName']);
 
-			foreach ( $saved_files as $info ) {
-				$mail->addAttachment( $info['path'], $info['original_name'] );
+			foreach ($saved_files as $info) {
+				$mail->addAttachment($info['path'], $info['original_name']);
 			}
 
 			$mail->Subject = "Admission Application — {$data['university']} ({$data['program1']}) — $reference_id";
 			$mail->Body    = $email_body;
-			$mail->isHTML( false );
+			$mail->isHTML(false);
 
 			$mail->send();
 			$mail_sent = true;
-		} catch ( Exception $e ) {
+		} catch (Exception $e) {
 			$mail_error = $e->getMessage();
 		}
 	} else {
@@ -323,14 +333,14 @@ function ccx_handle_admission_submission() {
 	// POST LEAD TO WEBHOOK
 	// ============================================================
 	$webhook_sent = false;
-	if ( '' !== CCX_WEBHOOK_URL ) {
+	if ('' !== CCX_WEBHOOK_URL) {
 		$webhook_payload = array_merge(
 			$data,
 			array(
 				'referenceId' => $reference_id,
-				'submittedAt' => gmdate( 'c' ),
+				'submittedAt' => gmdate('c'),
 				'documents'   => array_map(
-					function ( $info ) {
+					function ($info) {
 						return array(
 							'original_name' => $info['original_name'],
 							'url'            => $info['url'],
@@ -344,8 +354,8 @@ function ccx_handle_admission_submission() {
 		wp_remote_post(
 			CCX_WEBHOOK_URL,
 			array(
-				'headers' => array( 'Content-Type' => 'application/json' ),
-				'body'    => wp_json_encode( $webhook_payload ),
+				'headers' => array('Content-Type' => 'application/json'),
+				'body'    => wp_json_encode($webhook_payload),
 				'timeout' => 8,
 			)
 		);
@@ -358,36 +368,59 @@ function ccx_handle_admission_submission() {
 	// ============================================================
 	// LOCAL LEADS.CSV FALLBACK LOG
 	// ============================================================
-$csv_path   = ccx_leads_csv_path();
-$csv_is_new = ! file_exists( $csv_path );
-$csv_handle = fopen( $csv_path, 'a' );
-if ( $csv_handle ) {
-    if ( $csv_is_new ) {
-        fputcsv( $csv_handle, array(
-            'Reference', 'Submitted At', 'University', 'Program Preference 1', 'Program Preference 2', 'Program Preference 3',
-            'Campus', 'Full Name', 'CNIC', 'Mobile', 'Email', 'City', 'Study Mode', 'Intake', 'Mail Sent', 'Webhook Sent',
-        ) );
-    }
-    fputcsv( $csv_handle, array(
-        $reference_id, gmdate( 'c' ), $data['university'], $data['program1'], $data['program2'], $data['program3'],
-        $data['campus'], $data['fullName'], $data['cnic'], $data['mobile'], $data['email'], $data['city'],
-        $data['studyMode'], $data['intake'], $mail_sent ? 'yes' : 'no', $webhook_sent ? 'yes' : 'no',
-    ) );
-    fclose( $csv_handle );
-}
+	$csv_path   = ccx_leads_csv_path();
+	$csv_is_new = ! file_exists($csv_path);
+	$csv_handle = fopen($csv_path, 'a');
+	if ($csv_handle) {
+		if ($csv_is_new) {
+			fputcsv($csv_handle, array(
+				'Reference',
+				'Submitted At',
+				'University',
+				'Program Preference 1',
+				'Program Preference 2',
+				'Program Preference 3',
+				'Campus',
+				'Full Name',
+				'CNIC',
+				'Mobile',
+				'Email',
+				'City',
+				'Mail Sent',
+				'Webhook Sent',
+			));
+		}
+		fputcsv($csv_handle, array(
+			$reference_id,
+			gmdate('c'),
+			$data['university'],
+			$data['program1'],
+			$data['program2'],
+			$data['program3'],
+			$data['campus'],
+			$data['fullName'],
+			$data['cnic'],
+			$data['mobile'],
+			$data['email'],
+			$data['city'],
+			$mail_sent ? 'yes' : 'no',
+			$webhook_sent ? 'yes' : 'no',
+		));
+		fclose($csv_handle);
+	}
 
 	// ============================================================
 	// RESPONSE
 	// ============================================================
-	if ( ! $mail_sent ) {
+	if (! $mail_sent) {
 		// The application was still recorded (CSV, and webhook if
 		// configured), so the lead isn't lost — but we surface the SMTP
 		// error in the response to help with debugging.
-		wp_send_json_success( array(
+		wp_send_json_success(array(
 			'referenceId' => $reference_id,
 			'warning'     => 'Application recorded, but the confirmation email could not be sent: ' . $mail_error,
-		) );
+		));
 	}
 
-	wp_send_json_success( array( 'referenceId' => $reference_id ) );
+	wp_send_json_success(array('referenceId' => $reference_id));
 }
