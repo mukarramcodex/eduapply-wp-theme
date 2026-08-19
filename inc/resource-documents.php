@@ -89,7 +89,7 @@ function ccx_get_resource_documents() {
 			'updated' => '',
 		),
 		'bahria_fee' => array(
-			'url'     => 'https://eduapply.online/wp-content/uploads/2026/08/Bahria_University_Fee_Structure.pdf', // TODO: paste Bahria Fee Structure PDF URL (Media Library)
+			'url'     => 'https://eduapply.online/wp-content/uploads/2026/08/Bahria_University_Fee_Structure.pdf',
 			'updated' => 'August 2026',
 		),
 		'bahria_chalan' => array(
