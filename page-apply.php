@@ -64,6 +64,9 @@
       background: var(--ccx-paper);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     #ccx-page img {
@@ -308,6 +311,7 @@
     /* ---- Form layout ---- */
     #ccx-page .ccx-apply-main {
       padding: 34px 0 90px;
+      flex: 1;
     }
 
     #ccx-page .ccx-apply-panel {
