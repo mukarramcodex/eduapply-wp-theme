@@ -1,0 +1,10 @@
+This folder is intentionally empty.
+
+Drop the following 3 files here (from PHPMailer's `src/` folder,
+downloaded from https://github.com/PHPMailer/PHPMailer/releases):
+
+    PHPMailer.php
+    SMTP.php
+    Exception.php
+
+See README.md at the theme root for full setup instructions.

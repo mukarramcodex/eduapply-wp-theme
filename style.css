@@ -1,0 +1,21 @@
+/*
+Theme Name: EduApply
+Theme URI: https://eduapply.online
+Author: EduApply
+Author URI: https://eduapply.online
+Description: Multi-university admissions marketing theme for EduApply — an independent guidance platform promoting six partner universities (UCP, BIMS, UOR, NUML, TMUC, Bahria University). Each page is a fully self-contained template with its own scoped styling, so nothing here conflicts with plugin or builder output elsewhere on the site.
+Version: 1.1.0
+Requires at least: 5.8
+Requires PHP: 7.4
+License: Proprietary
+Text Domain: campus-compass
+
+This file intentionally stays minimal. Every page template in this theme
+carries its own complete, scoped <style> block (namespaced under a unique
+wrapper ID per page, e.g. #ccx-page, #ucp-page, #bims-page) so pages don't
+depend on a shared global stylesheet and can't collide with each other or
+with plugin/builder CSS elsewhere on the site. This file only needs to
+exist with the header above for WordPress to recognize the theme.
+*/
+
+html{ -webkit-text-size-adjust: 100%; }
