@@ -992,7 +992,7 @@ $ccx_has_pdf     = ! empty( $ccx_pdf_url );
     <div class="bahria-container bahria-res-doc-grid">
       <div class="bahria-res-doc-viewer">
         <?php if ( $ccx_has_pdf ) : ?>
-          <iframe src="<?php echo esc_url( $ccx_pdf_url ); ?>" title="Bahria University Merit List PDF" loading="lazy"></iframe>
+          <iframe src="https://docs.google.com/viewer?url=<?php echo rawurlencode( $ccx_pdf_url ); ?>&embedded=true" title="Bahria University Merit List PDF" loading="lazy"></iframe>
         <?php else : ?>
           <div class="bahria-res-doc-empty">
             <p>The merit list PDF hasn't been uploaded yet. Once it's added in <code>inc/resource-documents.php</code>, it will appear here automatically.</p>
