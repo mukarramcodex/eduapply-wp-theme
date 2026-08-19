@@ -1242,7 +1242,7 @@
       },
       BIMS: {
         name: "Barani Institute of Management & Sciences (BIMS)",
-        logo: null,
+        logo: "https://eduapply.online/wp-content/uploads/2026/08/bims-logo-nav.webp",
         campuses: ["Rawalpindi (Main Campus)"],
         programs: [
           "BBA (Hons) 4 Years", "BBA 2 Years", "BS Accounts & Finance", "BS Economics", "BSCS (General Computing)",
@@ -1276,55 +1276,16 @@
       },
       Bahria: {
         name: "Bahria University",
-        logo: "https://www.bahria.edu.pk/Content/images/bu_logo_small_1.png",
+        logo: "https://eduapply.online/wp-content/uploads/2026/08/bu_logo.png",
         campuses: ["Islamabad", "Karachi", "Lahore"],
-        programGroups: [{
-            faculty: "Faculty of Management Sciences",
-            departments: [
-              "Department of Business Administration",
-              "Department of Accounting & Finance",
-              "Department of Supply Chain & Economics"
-            ]
-          },
-          {
-            faculty: "Faculty of Engineering & Applied Sciences",
-            departments: [
-              "Department of Computer Science",
-              "Department of Software Engineering",
-              "Department of Computer Engineering",
-              "Department of Electrical Engineering"
-            ]
-          },
-          {
-            faculty: "Faculty of Earth & Environmental Sciences",
-            departments: [
-              "Department of Earth Sciences",
-              "Department of Environmental Sciences"
-            ]
-          },
-          {
-            faculty: "Faculty of Humanities & Social Sciences",
-            departments: [
-              "Department of Behavioral Sciences",
-              "Department of Humanities & Social Sciences",
-              "Department of Media Studies",
-              "Department of English"
-            ]
-          },
-          {
-            faculty: "Faculty of Law",
-            departments: [
-              "Department of Law"
-            ]
-          },
-          {
-            faculty: "Faculty of Health & Medical Sciences",
-            departments: [
-              "Department of Physical Therapy",
-              "Department of Public Health",
-              "Department of Nursing & Allied Health Sciences"
-            ]
-          }
+        programs: [
+          "Computer Science", "LLB", "Pharm-D", "Software Engineering", "Cyber Security",
+          "BS Nursing", "MS", "BS – Program Not Specified", "Other", "Electrical Engineering",
+          "Accounting & Finance", "Political Science", "English", "BS Respiratory Therapist",
+          "Business Administration / BBA", "International Relations (IR)", "Information Technology (IT)",
+          "BS Financial Technology", "MPhil Islamic Studies", "Mechanical Engineering", "Business Analytics",
+          "Psychology", "MBA / MPhil Linguistics", "Civil Rights", "Law", "Data Science & Analytics",
+          "MS Clinical Psychology", "B.Ed", "Artificial Intelligence (AI)", "Operation Theatre Technology"
         ]
       }
     };
