@@ -415,7 +415,7 @@ $ccx_has_pdf     = ! empty( $ccx_pdf_url );
     <div class="tmuc-container tmuc-res-doc-grid">
       <div class="tmuc-res-doc-viewer">
         <?php if ( $ccx_has_pdf ) : ?>
-          <iframe src="<?php echo esc_url( $ccx_pdf_url ); ?>" title="The Millennium Universal College Merit List PDF" loading="lazy"></iframe>
+          <iframe src="https://docs.google.com/viewer?url=<?php echo rawurlencode( $ccx_pdf_url ); ?>&embedded=true" title="The Millennium Universal College Merit List PDF" loading="lazy"></iframe>
         <?php else : ?>
           <div class="tmuc-res-doc-empty">
             <p>The merit list PDF hasn't been uploaded yet. Once it's added in <code>inc/resource-documents.php</code>, it will appear here automatically.</p>

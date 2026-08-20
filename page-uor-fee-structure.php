@@ -342,7 +342,7 @@ $ccx_has_pdf     = ! empty( $ccx_pdf_url );
     <div class="uor-container uor-res-doc-grid">
       <div class="uor-res-doc-viewer">
         <?php if ( $ccx_has_pdf ) : ?>
-          <iframe src="<?php echo esc_url( $ccx_pdf_url ); ?>" title="University of Rawalpindi Fee Structure PDF" loading="lazy"></iframe>
+          <iframe src="https://docs.google.com/viewer?url=<?php echo rawurlencode( $ccx_pdf_url ); ?>&embedded=true" title="University of Rawalpindi Fee Structure PDF" loading="lazy"></iframe>
         <?php else : ?>
           <div class="uor-res-doc-empty">
             <p>The fee structure PDF hasn't been uploaded yet. Once it's added in <code>inc/resource-documents.php</code>, it will appear here automatically.</p>

@@ -873,7 +873,7 @@ $ccx_has_pdf     = ! empty( $ccx_pdf_url );
     <div class="bims-container bims-res-doc-grid">
       <div class="bims-res-doc-viewer">
         <?php if ( $ccx_has_pdf ) : ?>
-          <iframe src="<?php echo esc_url( $ccx_pdf_url ); ?>" title="Barani Institute of Management & Sciences Fee Chalan PDF" loading="lazy"></iframe>
+          <iframe src="https://docs.google.com/viewer?url=<?php echo rawurlencode( $ccx_pdf_url ); ?>&embedded=true" title="Barani Institute of Management & Sciences Fee Chalan PDF" loading="lazy"></iframe>
         <?php else : ?>
           <div class="bims-res-doc-empty">
             <p>The fee chalan PDF hasn't been uploaded yet. Once it's added in <code>inc/resource-documents.php</code>, it will appear here automatically.</p>

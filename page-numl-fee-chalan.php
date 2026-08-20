@@ -446,7 +446,7 @@ $ccx_has_pdf     = ! empty( $ccx_pdf_url );
     <div class="numl-container numl-res-doc-grid">
       <div class="numl-res-doc-viewer">
         <?php if ( $ccx_has_pdf ) : ?>
-          <iframe src="<?php echo esc_url( $ccx_pdf_url ); ?>" title="National University of Modern Languages Fee Chalan PDF" loading="lazy"></iframe>
+          <iframe src="https://docs.google.com/viewer?url=<?php echo rawurlencode( $ccx_pdf_url ); ?>&embedded=true" title="National University of Modern Languages Fee Chalan PDF" loading="lazy"></iframe>
         <?php else : ?>
           <div class="numl-res-doc-empty">
             <p>The fee chalan PDF hasn't been uploaded yet. Once it's added in <code>inc/resource-documents.php</code>, it will appear here automatically.</p>
