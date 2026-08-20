@@ -2773,7 +2773,9 @@
               </svg></a>
             <div class="bims-dropdown">
               <a href="#">Apply Online</a>
-              <a href="#">Fee Structure</a>
+              <a href="/bims-fee-structure">Fee Structure</a>
+              <a href="/bims-merit-list">Merit List</a>
+              <a href="/bims-fee-chalan">Fee Chalan</a>
               <a href="#">Scholarship</a>
               <a href="#">How To Apply</a>
             </div>
@@ -2854,7 +2856,9 @@
           <a href="#">Admission</a>
           <div class="bims-mobile-sub">
             <a href="#">Apply Online</a>
-            <a href="#">Fee Structure</a>
+            <a href="/bims-fee-structure">Fee Structure</a>
+            <a href="/bims-merit-list">Merit List</a>
+            <a href="/bims-fee-chalan">Fee Chalan</a>
             <a href="#">Scholarship</a>
             <a href="#">How To Apply</a>
           </div>
@@ -3544,7 +3548,9 @@
             <h5>Admissions</h5>
             <ul>
               <li><a href="#">Apply Online</a></li>
-              <li><a href="#">Fee Structure</a></li>
+              <li><a href="/bims-fee-structure">Fee Structure</a></li>
+              <li><a href="/bims-merit-list">Merit List</a></li>
+              <li><a href="/bims-fee-chalan">Fee Chalan</a></li>
               <li><a href="#">Scholarships</a></li>
               <li><a href="#">How To Apply</a></li>
               <li><a href="#">Prospectus &amp; Downloads</a></li>

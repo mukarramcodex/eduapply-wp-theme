@@ -575,7 +575,9 @@
         <a href="#" aria-haspopup="true">Admissions <svg class="uor-caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
         <div class="uor-dropdown">
           <a href="#uor-programs" data-uor-scroll="#uor-programs">Programs</a>
-          <a href="#">Fee Structure</a>
+          <a href="/uor-fee-structure">Fee Structure</a>
+          <a href="/uor-merit-list">Merit List</a>
+          <a href="/uor-fee-chalan">Fee Chalan</a>
           <a href="#">Admissions FAQs</a>
           <a href="#">Fee Policy</a>
         </div>
@@ -601,7 +603,9 @@
       <a href="#">Admissions</a>
       <div class="uor-mobile-sub">
         <a href="#uor-programs" data-uor-scroll="#uor-programs">Programs</a>
-        <a href="#">Fee Structure</a>
+        <a href="/uor-fee-structure">Fee Structure</a>
+        <a href="/uor-merit-list">Merit List</a>
+        <a href="/uor-fee-chalan">Fee Chalan</a>
         <a href="#">Admissions FAQs</a>
         <a href="#">Fee Policy</a>
       </div>
@@ -1009,7 +1013,9 @@
         <ul>
           <li><a href="#uor-programs" data-uor-scroll="#uor-programs">Programs</a></li>
           <li><a href="#">Admissions</a></li>
-          <li><a href="#">Fee Structure</a></li>
+          <li><a href="/uor-fee-structure">Fee Structure</a></li>
+          <li><a href="/uor-merit-list">Merit List</a></li>
+          <li><a href="/uor-fee-chalan">Fee Chalan</a></li>
           <li><a href="#">Privacy Policy</a></li>
         </ul>
       </div>

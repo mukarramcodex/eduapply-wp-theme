@@ -2368,6 +2368,9 @@
           <a href="#bahria-about">About</a>
           <a href="#bahria-academics">Academics</a>
           <a href="#bahria-admissions">Admissions</a>
+          <a href="/bahria-fee-structure">Fee Structure</a>
+          <a href="/bahria-merit-list">Merit List</a>
+          <a href="/bahria-fee-chalan">Fee Chalan</a>
           <a href="#bahria-research">Research &amp; Innovations</a>
           <a href="#">International</a>
           <a href="#bahria-campuses">Campus</a>
@@ -2385,6 +2388,9 @@
         <a href="#bahria-about">About</a>
         <a href="#bahria-academics">Academics</a>
         <a href="#bahria-admissions">Admissions</a>
+        <a href="/bahria-fee-structure">Fee Structure</a>
+        <a href="/bahria-merit-list">Merit List</a>
+        <a href="/bahria-fee-chalan">Fee Chalan</a>
         <a href="#bahria-research">Research &amp; Innovations</a>
         <a href="#">International</a>
         <a href="#bahria-campuses">Campus</a>
@@ -2448,7 +2454,7 @@
          Updated" feed on bahria.edu.pk. -->
         <div class="bahria-news-track-wrap bahria-reveal">
           <div class="bahria-news-track" id="bahria-news-track">
-            <a href="#" class="bahria-news-card">
+            <a href="/bahria-merit-list" class="bahria-news-card">
               <div class="bahria-news-media"><img src="https://www.bahria.edu.pk/Content/images/content_photos/fbfffb29-5913-478d-9130-f5a896f1ce0c.png" alt="Bahria University Merit List" loading="lazy"></div>
               <div class="bahria-news-body">
                 <h3>Bahria University Merit List</h3><span class="bahria-read-more">Read More →</span>
