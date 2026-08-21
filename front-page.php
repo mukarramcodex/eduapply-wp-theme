@@ -660,13 +660,13 @@
 
   <div class="ccx-container ccx-hero-content">
     <div class="ccx-hero-text" id="ccx-hero-text">
-      <p class="ccx-hero-eyebrow" id="ccx-hero-eyebrow">Six Universities · One Starting Point</p>
+      <p class="ccx-hero-eyebrow" id="ccx-hero-eyebrow">Seven Universities · One Starting Point</p>
       <h1 id="ccx-hero-heading">Find the <em>Right</em> University for Your Future</h1>
       <p class="ccx-hero-sub" id="ccx-hero-sub">Explore leading universities, academic opportunities, campuses and admission options — all in one place.</p>
     </div>
     <div class="ccx-hero-actions">
       <a href="#ccx-universities" class="ccx-btn ccx-btn-gold" data-ccx-scroll="#ccx-universities">Explore Universities</a>
-      <a href="#" class="ccx-btn ccx-btn-outline ccx-admission-trigger">Admission Now</a>
+      <a href="#ccx-admissions" class="ccx-btn ccx-btn-outline ccx-admission-trigger">Admission Now</a>
     </div>
   </div>
 
@@ -682,7 +682,7 @@
     <div class="ccx-section-head ccx-reveal">
       <p class="ccx-eyebrow">The Options</p>
       <h2>Explore Your University Options</h2>
-      <p>Discover six universities offering diverse academic opportunities and experiences.</p>
+      <p>Discover seven universities offering diverse academic opportunities and experiences.</p>
     </div>
 
     <div class="ccx-uni-grid">
@@ -701,8 +701,10 @@
 
       <a href="/bims" class="ccx-uni-card ccx-reveal">
         <div class="ccx-uni-card-media">
-          <span class="ccx-uni-badge">BIMS</span>
-          <img src="https://bims.edu.pk/public/uploads/slider/homepage-hero-01-campus-wide-optimized.jpg" alt="BIMS campus" loading="lazy">
+          <span class="ccx-uni-badge">
+            <img src="https://eduapply.online/wp-content/uploads/2026/08/logo.webp" alt="badge-bims" >
+          </span>
+          <img src="https://eduapply.online/wp-content/uploads/2026/08/homepage-hero-01-campus-wide-optimized.webp" alt="BIMS campus" loading="lazy">
         </div>
         <div class="ccx-uni-card-body">
           <h3>BIMS</h3>
@@ -714,7 +716,7 @@
       <a href="/uor" class="ccx-uni-card ccx-reveal">
         <div class="ccx-uni-card-media">
           <span class="ccx-uni-badge">UOR</span>
-          <img src="https://www.uor.edu.pk/frontend/academics/img/about/intro.png" alt="University of Rawalpindi campus" loading="lazy">
+          <img src="https://eduapply.online/wp-content/uploads/2026/08/uor-intro.webp" alt="University of Rawalpindi campus" loading="lazy">
         </div>
         <div class="ccx-uni-card-body">
           <h3>University of Rawalpindi</h3>
@@ -755,6 +757,18 @@
         <div class="ccx-uni-card-body">
           <h3>Bahria University</h3>
           <p>A multi-campus university with a strong reputation across engineering, management and computer science.</p>
+          <span class="ccx-uni-card-cta">Explore University <span class="ccx-arrow">→</span></span>
+        </div>
+      </a>
+
+      <a href="/iqra" class="ccx-uni-card ccx-reveal">
+        <div class="ccx-uni-card-media">
+          <span class="ccx-uni-badge">IQRA</span>
+          <img src="https://eduapply.online/wp-content/uploads/2026/08/admissionbannersp26.webp" alt="Iqra University Islamabad Campus" loading="lazy">
+        </div>
+        <div class="ccx-uni-card-body">
+          <h3>Iqra University Islamabad Campus</h3>
+          <p>An HEC-recognized university at H-9, Islamabad offering Bachelor's, Master's and PhD programs across computing, business, media, health sciences and more.</p>
           <span class="ccx-uni-card-cta">Explore University <span class="ccx-arrow">→</span></span>
         </div>
       </a>
@@ -864,7 +878,7 @@
       </div>
     </div>
 
-    <div class="ccx-featured-row ccx-reverse ccx-reveal">
+    <div class="ccx-featured-row ccx-reverse ccx-reveal" style="margin-bottom:110px;">
       <div class="ccx-featured-media">
         <img src="https://www.bahria.edu.pk/Content/images/main/academics/1.jpg" alt="Bahria University campus building">
         <span class="ccx-tag">Bahria</span>
@@ -883,6 +897,25 @@
       </div>
     </div>
 
+    <div class="ccx-featured-row ccx-reveal">
+      <div class="ccx-featured-media">
+        <img src="https://eduapply.online/wp-content/uploads/2026/08/admissionbannersp26.webp" alt="Iqra University Islamabad Campus, H-9">
+        <span class="ccx-tag">IQRA</span>
+      </div>
+      <div class="ccx-featured-text">
+        <p class="ccx-eyebrow">Featured University</p>
+        <h3>Iqra University Islamabad Campus</h3>
+        <p>An HEC-recognized university at H-9, Islamabad, offering Bachelor's, Master's and PhD programs across computing, business, media studies, design, pharmacy and allied health sciences.</p>
+        <ul class="ccx-highlight-list">
+          <li>HEC-recognized, since 1998</li>
+          <li>Bachelor's, Master's &amp; PhD programs</li>
+          <li>Computing, business &amp; health sciences</li>
+          <li>H-9, Islamabad campus</li>
+        </ul>
+        <a href="/iqra" class="ccx-btn ccx-btn-outline-dark">Explore University</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -894,7 +927,7 @@
     <div class="ccx-section-head ccx-reveal">
       <p class="ccx-eyebrow ccx-on-dark">The Advantage</p>
       <h2>Why Explore These Universities?</h2>
-      <p>Six different institutions, each with its own strengths — here's what makes them worth a closer look.</p>
+      <p>Seven different institutions, each with its own strengths — here's what makes them worth a closer look.</p>
     </div>
 
     <div class="ccx-why-grid ccx-reveal">
@@ -1008,6 +1041,11 @@
             <td class="ccx-compare-focus">Engineering, management &amp; computer science</td>
             <td><a href="/bahria" class="ccx-compare-link">Explore →</a></td>
           </tr>
+          <tr>
+            <td><span class="ccx-compare-name"><span class="ccx-dot"></span>Iqra University Islamabad Campus</span></td>
+            <td class="ccx-compare-focus">Computing, business, media &amp; health sciences</td>
+            <td><a href="/iqra" class="ccx-compare-link">Explore →</a></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -1079,6 +1117,7 @@
                 <option value="NUML">NUML</option>
                 <option value="TMUC">The Millennium Universal College</option>
                 <option value="Bahria">Bahria University</option>
+                <option value="IQRA">Iqra University Islamabad Campus</option>
               </select>
               <span class="ccx-field-error">Please select a university.</span>
             </div>
@@ -1195,6 +1234,7 @@
             <option value="NUML">NUML</option>
             <option value="TMUC">The Millennium Universal College</option>
             <option value="Bahria">Bahria University</option>
+            <option value="IQRA">Iqra University Islamabad Campus</option>
           </select>
           <span class="ccx-field-error">Please select a university.</span>
         </div>
@@ -1282,7 +1322,8 @@ var ccxCampusCompass = (function(){
       UOR: "",
       NUML: "",
       TMUC: "",
-      Bahria: ""
+      Bahria: "",
+      IQRA: "923155264264"
     };
 
     function ccxOpenModal(prefill){

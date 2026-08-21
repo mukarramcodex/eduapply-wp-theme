@@ -96,6 +96,18 @@ function ccx_get_resource_documents() {
 			'url'     => '', // TODO: paste Bahria Fee Chalan PDF URL (Media Library)
 			'updated' => '',
 		),
+		'iqra_merit' => array(
+			'url'     => '', // TODO: paste IQRA Merit List PDF URL (Media Library)
+			'updated' => '',
+		),
+		'iqra_fee' => array(
+			'url'     => '', // TODO: paste IQRA Fee Structure PDF URL (Media Library)
+			'updated' => '',
+		),
+		'iqra_chalan' => array(
+			'url'     => '', // TODO: paste IQRA Fee Chalan PDF URL (Media Library)
+			'updated' => '',
+		),
 	);
 }
 

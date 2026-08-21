@@ -1287,6 +1287,23 @@
           "Psychology", "MBA / MPhil Linguistics", "Civil Rights", "Law", "Data Science & Analytics",
           "MS Clinical Psychology", "B.Ed", "Artificial Intelligence (AI)", "Operation Theatre Technology"
         ]
+      },
+      IQRA: {
+        name: "Iqra University Islamabad Campus",
+        logo: "https://eduapply.online/wp-content/uploads/2026/08/Iqra-Logo.webp",
+        campuses: ["Islamabad (H-9 Campus)"],
+        programs: [
+          "BS Computer Science (BSCS)", "Associate Degree (AD) Computing", "BS Artificial Intelligence (BSAI)",
+          "BS Software Engineering (BSSE)", "MS Computer Science", "MS Software Engineering", "PhD Computer Science",
+          "AD in Accounting & Finance", "AD in Digital Marketing", "AD in Business Analytics", "BBA (Hons)",
+          "BS Business Analytics", "BS Accounting and Finance", "BS Commerce", "MBA", "MS Management Science",
+          "PhD Business Administration", "Diploma in Fashion Design (BFD)", "Diploma in Textile Design (BTD)",
+          "AD in International Relations", "AD in English", "BS International Relations (BSIR)", "BS English",
+          "M.Phil International Development Studies (IDS)", "M.Phil International Relations (IR)",
+          "AD in Film & TV", "AD in Animation", "BS Media Studies (BMS)", "Doctor of Pharmacy (Pharm.D)",
+          "AD in Psychology", "BS Psychology", "BS Psychology (Clinical)", "BS Medical Lab Technology (MLT)",
+          "BS Human Nutrition & Dietetics (HND)"
+        ]
       }
     };
 
@@ -1604,7 +1621,8 @@
           "/uor": "UOR",
           "/numl": "NUML",
           "/tmuc": "TMUC",
-          "/bahria": "Bahria"
+          "/bahria": "Bahria",
+          "/iqra": "IQRA"
         };
         for (var path in pathMap) {
           if (referrer.indexOf(path) !== -1) return pathMap[path];

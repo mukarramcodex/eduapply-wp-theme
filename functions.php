@@ -66,6 +66,7 @@ function ccx_register_page_templates( $templates ) {
 	$templates['page-numl.php']             = __( 'EduApply — NUML', 'campus-compass' );
 	$templates['page-tmuc.php']             = __( 'EduApply — TMUC', 'campus-compass' );
 	$templates['page-bahria.php']           = __( 'EduApply — Bahria University', 'campus-compass' );
+	$templates['page-iqra.php']             = __( 'EduApply — IQRA', 'campus-compass' );
 	$templates['page-apply.php']            = __( 'EduApply — Admission Application', 'campus-compass' );
 
 	$templates['page-ucp-merit-list.php']       = __( 'EduApply — UCP Merit List', 'campus-compass' );
@@ -86,6 +87,9 @@ function ccx_register_page_templates( $templates ) {
 	$templates['page-bahria-merit-list.php']    = __( 'EduApply — Bahria Merit List', 'campus-compass' );
 	$templates['page-bahria-fee-structure.php'] = __( 'EduApply — Bahria Fee Structure', 'campus-compass' );
 	$templates['page-bahria-fee-chalan.php']    = __( 'EduApply — Bahria Fee Chalan', 'campus-compass' );
+	$templates['page-iqra-merit-list.php']      = __( 'EduApply — IQRA Merit List', 'campus-compass' );
+	$templates['page-iqra-fee-structure.php']   = __( 'EduApply — IQRA Fee Structure', 'campus-compass' );
+	$templates['page-iqra-fee-chalan.php']      = __( 'EduApply — IQRA Fee Chalan', 'campus-compass' );
 
 	return $templates;
 }
