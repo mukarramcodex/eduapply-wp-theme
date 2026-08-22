@@ -1,18 +1,20 @@
 <?php
 /**
- * Central registry of Merit List / Fee Structure PDFs for every university.
+ * Central registry of Merit List / Fee Structure / Fee Chalan PDFs for
+ * every university.
  *
- * HOW TO UPDATE A PDF (no code editing needed for this step):
- *   1. Upload the PDF in wp-admin under Media → Add New.
- *   2. Open the uploaded file and copy its URL ("Copy URL to clipboard").
- *   3. Paste that URL into the matching 'url' value below.
- *   4. Optionally update 'updated' to the date shown on the page (e.g. "August 2026").
+ * HOW TO UPDATE A PDF (no code editing needed — same as everything else
+ * in this theme now):
+ *   Go to Appearance → Customize → EduApply Settings → Resource Documents
+ *   (PDFs). Upload the PDF at Media → Add New, copy its URL, and paste it
+ *   into the matching field there. Optionally set the "Updated" date too
+ *   (e.g. "August 2026").
  *
- * That's it — the merit-list / fee-structure page templates read from this
- * file automatically, so nothing else needs to change when a PDF is
- * replaced each admission cycle.
+ * The merit-list / fee-structure / fee-chalan page templates all read
+ * from ccx_get_resource_document() below automatically, so nothing else
+ * needs to change when a PDF is replaced each admission cycle.
  *
- * Key naming: {university}_{merit|fee}
+ * Key naming: {university}_{merit|fee|chalan}
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,95 +22,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Returns the full registry of resource documents.
+ * Returns the full registry of resource documents, read live from
+ * Appearance → Customize → EduApply Settings → Resource Documents (PDFs).
+ * See inc/customizer.php for where these settings are registered.
  */
 function ccx_get_resource_documents() {
-	return array(
-		'ucp_merit' => array(
-			'url'     => '', // TODO: paste UCP Merit List PDF URL (Media Library)
-			'updated' => '',
-		),
-		'ucp_fee' => array(
-			'url'     => '', // TODO: paste UCP Fee Structure PDF URL (Media Library)
-			'updated' => '',
-		),
-		'ucp_chalan' => array(
-			'url'     => '', // TODO: paste UCP Fee Chalan PDF URL (Media Library)
-			'updated' => '',
-		),
-		'bims_merit' => array(
-			'url'     => '', // TODO: paste BIMS Merit List PDF URL (Media Library)
-			'updated' => '',
-		),
-		'bims_fee' => array(
-			'url'     => '', // TODO: paste BIMS Fee Structure PDF URL (Media Library)
-			'updated' => '',
-		),
-		'bims_chalan' => array(
-			'url'     => '', // TODO: paste BIMS Fee Chalan PDF URL (Media Library)
-			'updated' => '',
-		),
-		'uor_merit' => array(
-			'url'     => '', // TODO: paste UOR Merit List PDF URL (Media Library)
-			'updated' => '',
-		),
-		'uor_fee' => array(
-			'url'     => '', // TODO: paste UOR Fee Structure PDF URL (Media Library)
-			'updated' => '',
-		),
-		'uor_chalan' => array(
-			'url'     => '', // TODO: paste UOR Fee Chalan PDF URL (Media Library)
-			'updated' => '',
-		),
-		'numl_merit' => array(
-			'url'     => '', // TODO: paste NUML Merit List PDF URL (Media Library)
-			'updated' => '',
-		),
-		'numl_fee' => array(
-			'url'     => '', // TODO: paste NUML Fee Structure PDF URL (Media Library)
-			'updated' => '',
-		),
-		'numl_chalan' => array(
-			'url'     => '', // TODO: paste NUML Fee Chalan PDF URL (Media Library)
-			'updated' => '',
-		),
-		'tmuc_merit' => array(
-			'url'     => '', // TODO: paste TMUC Merit List PDF URL (Media Library)
-			'updated' => '',
-		),
-		'tmuc_fee' => array(
-			'url'     => '', // TODO: paste TMUC Fee Structure PDF URL (Media Library)
-			'updated' => '',
-		),
-		'tmuc_chalan' => array(
-			'url'     => '', // TODO: paste TMUC Fee Chalan PDF URL (Media Library)
-			'updated' => '',
-		),
-		'bahria_merit' => array(
-			'url'     => '', // TODO: paste Bahria Merit List PDF URL (Media Library)
-			'updated' => '',
-		),
-		'bahria_fee' => array(
-			'url'     => 'https://eduapply.online/wp-content/uploads/2026/08/Bahria_University_Fee_Structure.pdf',
-			'updated' => 'August 2026',
-		),
-		'bahria_chalan' => array(
-			'url'     => '', // TODO: paste Bahria Fee Chalan PDF URL (Media Library)
-			'updated' => '',
-		),
-		'iqra_merit' => array(
-			'url'     => '', // TODO: paste IQRA Merit List PDF URL (Media Library)
-			'updated' => '',
-		),
-		'iqra_fee' => array(
-			'url'     => '', // TODO: paste IQRA Fee Structure PDF URL (Media Library)
-			'updated' => '',
-		),
-		'iqra_chalan' => array(
-			'url'     => '', // TODO: paste IQRA Fee Chalan PDF URL (Media Library)
-			'updated' => '',
-		),
-	);
+	$universities = array( 'ucp', 'bims', 'uor', 'numl', 'tmuc', 'bahria', 'iqra' );
+	$doc_types    = array( 'merit', 'fee', 'chalan' );
+
+	$docs = array();
+	foreach ( $universities as $uni ) {
+		foreach ( $doc_types as $type ) {
+			$key = "{$uni}_{$type}";
+			$docs[ $key ] = array(
+				'url'     => get_theme_mod( "ccx_doc_url_{$key}", '' ),
+				'updated' => get_theme_mod( "ccx_doc_updated_{$key}", '' ),
+			);
+		}
+	}
+	return $docs;
 }
 
 /**

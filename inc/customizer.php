@@ -388,6 +388,60 @@ function ccx_customize_register( $wp_customize ) {
 
 	/**
 	 * ============================================================
+	 * SECTION: RESOURCE DOCUMENTS (Merit List / Fee Structure / Fee Chalan)
+	 * ============================================================
+	 * Drives the 21 resource pages (7 universities × 3 document types).
+	 * See inc/resource-documents.php for the getters these feed.
+	 */
+	$wp_customize->add_section( 'ccx_resource_docs', array(
+		'title'       => __( 'Resource Documents (PDFs)', 'campus-compass' ),
+		'panel'       => 'ccx_panel',
+		'description' => __( 'Merit List, Fee Structure, and Fee Chalan PDFs for each university. Upload a PDF at Media → Add New, copy its URL, and paste it here.', 'campus-compass' ),
+	) );
+
+	$doc_type_labels = array(
+		'merit'  => 'Merit List',
+		'fee'    => 'Fee Structure',
+		'chalan' => 'Fee Chalan',
+	);
+
+	// Preserve the one real document already live on the site; every other
+	// slot defaults to blank exactly as before.
+	$doc_defaults = array(
+		'bahria_fee' => array(
+			'url'     => 'https://eduapply.online/wp-content/uploads/2026/08/Bahria_University_Fee_Structure.pdf',
+			'updated' => 'August 2026',
+		),
+	);
+
+	foreach ( $program_labels as $uni_key => $uni_label ) {
+		foreach ( $doc_type_labels as $doc_key => $doc_label ) {
+			$setting_key = "{$uni_key}_{$doc_key}";
+			$default     = isset( $doc_defaults[ $setting_key ] ) ? $doc_defaults[ $setting_key ] : array( 'url' => '', 'updated' => '' );
+
+			$wp_customize->add_setting( "ccx_doc_url_{$setting_key}", array(
+				'default'           => $default['url'],
+				'sanitize_callback' => 'esc_url_raw',
+			) );
+			$wp_customize->add_control( "ccx_doc_url_{$setting_key}", array(
+				'section' => 'ccx_resource_docs',
+				'label'   => sprintf( __( '%1$s — %2$s (PDF URL)', 'campus-compass' ), $uni_label, $doc_label ),
+			) );
+
+			$wp_customize->add_setting( "ccx_doc_updated_{$setting_key}", array(
+				'default'           => $default['updated'],
+				'sanitize_callback' => 'sanitize_text_field',
+			) );
+			$wp_customize->add_control( "ccx_doc_updated_{$setting_key}", array(
+				'section'     => 'ccx_resource_docs',
+				'label'       => sprintf( __( '%1$s — %2$s (Updated Date)', 'campus-compass' ), $uni_label, $doc_label ),
+				'description' => __( 'e.g. "August 2026". Optional.', 'campus-compass' ),
+			) );
+		}
+	}
+
+	/**
+	 * ============================================================
 	 * SECTION: APPLICATION FORM — PROGRAMS PER UNIVERSITY
 	 * ============================================================
 	 * One program per line. This directly drives the three programme-
