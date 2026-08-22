@@ -596,15 +596,18 @@
 <!-- ============================================================
      NOTIFICATION BAR (admission dates + quick Apply Now)
      ============================================================ -->
+<?php $ccx_dates = ccx_admission_dates( 'numl' ); ?>
+<?php if ( $ccx_dates['enabled'] ) : ?>
 <div class="numl-notify-bar" id="numl-notify-bar">
   <div class="numl-container numl-notify-inner">
     <div class="numl-notify-items">
       <span class="numl-notify-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg> Last Date to Apply: <strong id="numl-notify-lastdate"></strong></span>
-      <span class="numl-notify-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Entry Test: <strong id="numl-notify-entrytest"></strong></span>
+      <span class="numl-notify-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Open Merit Based Admission: <strong id="numl-notify-entrytest"></strong></span>
     </div>
     <button type="button" class="numl-notify-apply numl-quickapply-trigger">Apply Now</button>
   </div>
 </div>
+<?php endif; ?>
 
 <!-- ============================================================
      HEADER
@@ -613,7 +616,7 @@
   <div class="numl-container">
     <a href="/numl" class="numl-logo" aria-label="NUML home">
       <!-- Sourced directly from the official NUML asset (numl.edu.pk) -->
-      <img src="https://numl.edu.pk/templates/template10/images/numl_logo.png" alt="National University of Modern Languages logo">
+      <img src="<?php echo esc_url( ccx_university_logo( 'numl' ) ); ?>" alt="National University of Modern Languages logo">
     </a>
 
     <ul class="numl-nav" aria-label="Primary">
@@ -1455,10 +1458,10 @@ var numlHomepage = (function(){
      confirmed entry-test date was published, so that remains a
      placeholder.
      ============================================================ */
-  // TODO: keep this in sync with NUML's live admissions notice.
+  // Set at Appearance → Customize → EduApply Settings → Admission Dates Bar.
   var numlAdmissionInfo = {
-    lastDateToApply: "17 August 2026 (Phase-II)",
-    entryTestDate: "Contact Admissions Office for Current Dates"
+    lastDateToApply: "<?php echo esc_js( $ccx_dates['lastDate'] ); ?>",
+    entryTestDate: "<?php echo esc_js( $ccx_dates['meritDate'] ); ?>"
   };
   var numlQuickApplyEmail = "info@eduapply.online";
   var numlQuickApplyBound = false;

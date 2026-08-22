@@ -2740,6 +2740,8 @@
     <!-- ============================================================
      NOTIFICATION BAR (admission dates + quick Apply Now)
      ============================================================ -->
+    <?php $ccx_dates = ccx_admission_dates( 'bims' ); ?>
+    <?php if ( $ccx_dates['enabled'] ) : ?>
     <div class="bims-notify-bar" id="bims-notify-bar">
       <div class="bims-container bims-notify-inner">
         <div class="bims-notify-items">
@@ -2750,11 +2752,12 @@
           <span class="bims-notify-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 11l3 3L22 4" />
               <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
-            </svg> Entry Test: <strong id="bims-notify-entrytest"></strong></span>
+            </svg> Open Merit Based Admission: <strong id="bims-notify-entrytest"></strong></span>
         </div>
         <button type="button" class="bims-notify-apply bims-quickapply-trigger">Apply Now</button>
       </div>
     </div>
+    <?php endif; ?>
 
     <!-- ============================================================
      HEADER
@@ -2762,7 +2765,7 @@
     <header class="bims-header">
       <div class="bims-container">
         <a href="/bims" class="bims-logo" aria-label="BIMS home">
-          <img src="https://eduapply.online/wp-content/uploads/2026/08/bims-logo-nav.webp" style="width:auto; height:42px" alt="BIMS logo">
+          <img src="<?php echo esc_url( ccx_university_logo( 'bims' ) ); ?>" style="width:auto; height:42px" alt="BIMS logo">
         </a>
 
         <ul class="bims-nav" aria-label="Primary">
@@ -3927,10 +3930,10 @@
          ADMISSION DATES — configurable placeholder until BIMS supplies
          verified dates.
          ============================================================ */
-      // TODO: replace with BIMS's verified admission dates.
+      // Set at Appearance → Customize → EduApply Settings → Admission Dates Bar.
       var bimsAdmissionInfo = {
-        lastDateToApply: "Contact Admissions Office for Current Dates",
-        entryTestDate: "Contact Admissions Office for Current Dates"
+        lastDateToApply: "<?php echo esc_js( $ccx_dates['lastDate'] ); ?>",
+        entryTestDate: "<?php echo esc_js( $ccx_dates['meritDate'] ); ?>"
       };
       var bimsQuickApplyEmail = "info@eduapply.online";
       var bimsQuickApplyBound = false;

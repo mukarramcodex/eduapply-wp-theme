@@ -271,6 +271,122 @@ function ccx_customize_register( $wp_customize ) {
 	$wp_customize->add_control( 'ccx_bahria_announce_link', array( 'section' => 'ccx_bahria_announce', 'label' => __( 'Link URL (optional)', 'campus-compass' ), 'description' => __( 'Leave blank for plain text with no link.', 'campus-compass' ) ) );
 
 	/**
+	 * Shared university key => display label map, used by the Campuses,
+	 * Logos, Admission Dates, and Programs sections below.
+	 */
+	$program_labels = array(
+		'ucp' => 'UCP', 'bims' => 'BIMS', 'uor' => 'UOR', 'numl' => 'NUML',
+		'tmuc' => 'TMUC', 'bahria' => 'Bahria University', 'iqra' => 'IQRA University',
+	);
+
+	/**
+	 * ============================================================
+	 * SECTION: CAMPUSES PER UNIVERSITY
+	 * ============================================================
+	 * One campus per line. Drives the application form's Campus dropdown
+	 * for each university.
+	 */
+	$wp_customize->add_section( 'ccx_campuses', array(
+		'title'       => __( 'Campuses', 'campus-compass' ),
+		'panel'       => 'ccx_panel',
+		'description' => __( 'One campus per line. Drives the application form\'s Campus dropdown for each university.', 'campus-compass' ),
+	) );
+
+	$campus_defaults = array(
+		'ucp'    => "Lahore (Main Campus)",
+		'bims'   => "Rawalpindi (Main Campus)",
+		'uor'    => "Rawalpindi (Main Campus)",
+		'numl'   => "Islamabad (Main Campus)\nLahore\nFaisalabad\nMultan\nHyderabad\nQuetta\nPeshawar\nKarachi\nRawalpindi\nMirpur (Azad Kashmir)",
+		'tmuc'   => "Islamabad (Main Campus)\nRawalpindi\nGujranwala\nFaisalabad\nLahore\nKarachi\nPeshawar\nAbbottabad\nMultan",
+		'bahria' => "Islamabad\nKarachi\nLahore",
+		'iqra'   => "Islamabad (H-9 Campus)",
+	);
+	foreach ( $campus_defaults as $key => $default ) {
+		$wp_customize->add_setting( "ccx_campuses_{$key}", array(
+			'default'           => $default,
+			'sanitize_callback' => 'sanitize_textarea_field',
+		) );
+		$wp_customize->add_control( "ccx_campuses_{$key}", array(
+			'section' => 'ccx_campuses',
+			'label'   => $program_labels[ $key ],
+			'type'    => 'textarea',
+		) );
+	}
+
+	/**
+	 * ============================================================
+	 * SECTION: UNIVERSITY LOGOS
+	 * ============================================================
+	 */
+	$wp_customize->add_section( 'ccx_logos', array(
+		'title' => __( 'University Logos', 'campus-compass' ),
+		'panel' => 'ccx_panel',
+	) );
+
+	$logo_defaults = array(
+		'ucp'    => 'https://ucp.edu.pk/inc/uploads/2019/06/ucp-sticky-logo-white-1.png',
+		'bims'   => 'https://eduapply.online/wp-content/uploads/2026/08/bims-logo-nav.webp',
+		'uor'    => 'https://www.uor.edu.pk/frontend/academics/img/logo-primary.png',
+		'numl'   => 'https://numl.edu.pk/templates/template10/images/numl_logo.png',
+		'tmuc'   => 'https://eduapply.online/wp-content/uploads/2026/08/tmuc-dark-logo.png',
+		'bahria' => 'https://eduapply.online/wp-content/uploads/2026/08/bu_logo.png',
+		'iqra'   => 'https://eduapply.online/wp-content/uploads/2026/08/Iqra-Logo.webp',
+	);
+	foreach ( $logo_defaults as $key => $default ) {
+		$wp_customize->add_setting( "ccx_logo_{$key}", array(
+			'default'           => $default,
+			'sanitize_callback' => 'esc_url_raw',
+		) );
+		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, "ccx_logo_{$key}", array(
+			'section' => 'ccx_logos',
+			'label'   => $program_labels[ $key ],
+		) ) );
+	}
+
+	/**
+	 * ============================================================
+	 * SECTION: ADMISSION DATES BAR
+	 * ============================================================
+	 * The top notification bar shown on every university landing page:
+	 * "Last Date to Apply" and "Open Merit Based Admission Date".
+	 */
+	$wp_customize->add_section( 'ccx_admission_dates', array(
+		'title'       => __( 'Admission Dates Bar', 'campus-compass' ),
+		'panel'       => 'ccx_panel',
+		'description' => __( 'The top notification bar on each university landing page. Shown for every university, including IQRA.', 'campus-compass' ),
+	) );
+
+	foreach ( $program_labels as $key => $label ) {
+		$wp_customize->add_setting( "ccx_admission_bar_enabled_{$key}", array(
+			'default'           => true,
+			'sanitize_callback' => function( $v ) { return (bool) $v; },
+		) );
+		$wp_customize->add_control( "ccx_admission_bar_enabled_{$key}", array(
+			'section' => 'ccx_admission_dates',
+			'label'   => sprintf( __( '%s — Show Bar', 'campus-compass' ), $label ),
+			'type'    => 'checkbox',
+		) );
+
+		$wp_customize->add_setting( "ccx_admission_lastdate_{$key}", array(
+			'default'           => 'numl' === $key ? '17 August 2026 (Phase-II)' : 'Contact Admissions Office for Current Dates',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( "ccx_admission_lastdate_{$key}", array(
+			'section' => 'ccx_admission_dates',
+			'label'   => sprintf( __( '%s — Last Date to Apply', 'campus-compass' ), $label ),
+		) );
+
+		$wp_customize->add_setting( "ccx_admission_meritdate_{$key}", array(
+			'default'           => 'Contact Admissions Office for Current Dates',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( "ccx_admission_meritdate_{$key}", array(
+			'section' => 'ccx_admission_dates',
+			'label'   => sprintf( __( '%s — Open Merit Based Admission Date', 'campus-compass' ), $label ),
+		) );
+	}
+
+	/**
 	 * ============================================================
 	 * SECTION: APPLICATION FORM — PROGRAMS PER UNIVERSITY
 	 * ============================================================
@@ -293,10 +409,6 @@ function ccx_customize_register( $wp_customize ) {
 		'tmuc' => "BA (Hons) Business Administration\nBSc Computer Science\nLLB Hons\nBA (Hons) Fashion Textile\nMBA\nBSc Psychology",
 		'bahria' => "Computer Science\nLLB\nPharm-D\nSoftware Engineering\nCyber Security\nBS Nursing\nMS\nBS – Program Not Specified\nOther\nElectrical Engineering\nAccounting & Finance\nPolitical Science\nEnglish\nBS Respiratory Therapist\nBusiness Administration / BBA\nInternational Relations (IR)\nInformation Technology (IT)\nBS Financial Technology\nMPhil Islamic Studies\nMechanical Engineering\nBusiness Analytics\nPsychology\nMBA / MPhil Linguistics\nCivil Rights\nLaw\nData Science & Analytics\nMS Clinical Psychology\nB.Ed\nArtificial Intelligence (AI)\nOperation Theatre Technology",
 		'iqra' => "BS Computer Science (BSCS)\nAssociate Degree (AD) Computing\nBS Artificial Intelligence (BSAI)\nBS Software Engineering (BSSE)\nMS Computer Science\nMS Software Engineering\nPhD Computer Science\nAD in Accounting & Finance\nAD in Digital Marketing\nAD in Business Analytics\nBBA (Hons)\nBS Business Analytics\nBS Accounting and Finance\nBS Commerce\nMBA\nMS Management Science\nPhD Business Administration\nDiploma in Fashion Design (BFD)\nDiploma in Textile Design (BTD)\nAD in International Relations\nAD in English\nBS International Relations (BSIR)\nBS English\nM.Phil International Development Studies (IDS)\nM.Phil International Relations (IR)\nAD in Film & TV\nAD in Animation\nBS Media Studies (BMS)\nDoctor of Pharmacy (Pharm.D)\nAD in Psychology\nBS Psychology\nBS Psychology (Clinical)\nBS Medical Lab Technology (MLT)\nBS Human Nutrition & Dietetics (HND)",
-	);
-	$program_labels = array(
-		'ucp' => 'UCP', 'bims' => 'BIMS', 'uor' => 'UOR', 'numl' => 'NUML',
-		'tmuc' => 'TMUC', 'bahria' => 'Bahria University', 'iqra' => 'IQRA University',
 	);
 	foreach ( $program_defaults as $key => $default ) {
 		$wp_customize->add_setting( "ccx_programs_{$key}", array(
@@ -404,6 +516,45 @@ function ccx_university_programs( $key ) {
 	$lines = array_map( 'trim', explode( "\n", $raw ) );
 	$lines = array_filter( $lines, function( $line ) { return '' !== $line; } );
 	return array_values( $lines );
+}
+
+/**
+ * @param string $key University code, lowercase: ucp, bims, uor, numl,
+ *                    tmuc, bahria, iqra.
+ * @return array List of campus name strings, one per Customizer line.
+ */
+function ccx_university_campuses( $key ) {
+	$key = strtolower( $key );
+	$raw = get_theme_mod( "ccx_campuses_{$key}", '' );
+	if ( '' === trim( (string) $raw ) ) {
+		return array();
+	}
+	$lines = array_map( 'trim', explode( "\n", $raw ) );
+	$lines = array_filter( $lines, function( $line ) { return '' !== $line; } );
+	return array_values( $lines );
+}
+
+/**
+ * @param string $key University code, lowercase: ucp, bims, uor, numl,
+ *                    tmuc, bahria, iqra.
+ */
+function ccx_university_logo( $key ) {
+	$key = strtolower( $key );
+	return get_theme_mod( "ccx_logo_{$key}", '' );
+}
+
+/**
+ * @param string $key University code, lowercase: ucp, bims, uor, numl,
+ *                    tmuc, bahria, iqra.
+ * @return array { enabled, lastDate, meritDate }
+ */
+function ccx_admission_dates( $key ) {
+	$key = strtolower( $key );
+	return array(
+		'enabled'   => (bool) get_theme_mod( "ccx_admission_bar_enabled_{$key}", true ),
+		'lastDate'  => get_theme_mod( "ccx_admission_lastdate_{$key}", 'Contact Admissions Office for Current Dates' ),
+		'meritDate' => get_theme_mod( "ccx_admission_meritdate_{$key}", 'Contact Admissions Office for Current Dates' ),
+	);
 }
 
 function ccx_welcome_popup( $key ) {

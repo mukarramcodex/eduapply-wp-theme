@@ -808,15 +808,18 @@
 <!-- ============================================================
      NOTIFICATION BAR (admission dates + quick Apply Now)
      ============================================================ -->
+<?php $ccx_dates = ccx_admission_dates( 'ucp' ); ?>
+<?php if ( $ccx_dates['enabled'] ) : ?>
 <div class="ucp-notify-bar" id="ucp-notify-bar">
   <div class="ucp-container ucp-notify-inner">
     <div class="ucp-notify-items">
       <span class="ucp-notify-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg> Last Date to Apply: <strong id="ucp-notify-lastdate"></strong></span>
-      <span class="ucp-notify-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Entry Test: <strong id="ucp-notify-entrytest"></strong></span>
+      <span class="ucp-notify-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Open Merit Based Admission: <strong id="ucp-notify-entrytest"></strong></span>
     </div>
     <button type="button" class="ucp-notify-apply ucp-quickapply-trigger">Apply Now</button>
   </div>
 </div>
+<?php endif; ?>
 
 <!-- ============================================================
      HEADER
@@ -825,7 +828,7 @@
   <div class="ucp-container">
     <a href="/ucp" class="ucp-logo" aria-label="University of Central Punjab home">
       <!-- Sourced directly from the official UCP asset (ucp.edu.pk) -->
-      <img src="https://ucp.edu.pk/inc/uploads/2019/06/ucp-sticky-logo-white-1.png" alt="University of Central Punjab logo">
+      <img src="<?php echo esc_url( ccx_university_logo( 'ucp' ) ); ?>" alt="University of Central Punjab logo">
     </a>
 
     <ul class="ucp-nav" aria-label="Primary">
@@ -1707,10 +1710,10 @@ var ucpHomepage = (function(){
      deadline at build time; every other page shows an honest
      placeholder until the site owner supplies confirmed dates.
      ============================================================ */
-  // TODO: replace with UCP's verified admission dates.
+  // Set at Appearance → Customize → EduApply Settings → Admission Dates Bar.
   var ucpAdmissionInfo = {
-    lastDateToApply: "Contact Admissions Office for Current Dates",
-    entryTestDate: "Contact Admissions Office for Current Dates"
+    lastDateToApply: "<?php echo esc_js( $ccx_dates['lastDate'] ); ?>",
+    entryTestDate: "<?php echo esc_js( $ccx_dates['meritDate'] ); ?>"
   };
   var ucpQuickApplyEmail = "info@eduapply.online";
   var ucpQuickApplyBound = false;

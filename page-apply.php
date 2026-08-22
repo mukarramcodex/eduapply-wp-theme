@@ -1237,45 +1237,45 @@
     var ccxApplyUniversities = {
       UCP: {
         name: "University of Central Punjab",
-        logo: "https://ucp.edu.pk/inc/uploads/2019/06/ucp-sticky-logo-white-1.png",
+        logo: "<?php echo esc_js( ccx_university_logo( 'ucp' ) ); ?>",
         logoDarkBg: true,
-        campuses: ["Lahore (Main Campus)"],
+        campuses: <?php echo wp_json_encode( ccx_university_campuses( 'ucp' ) ); ?>,
         programs: <?php echo wp_json_encode( ccx_university_programs( 'ucp' ) ); ?>
       },
       BIMS: {
         name: "Barani Institute of Management & Sciences (BIMS)",
-        logo: "https://eduapply.online/wp-content/uploads/2026/08/bims-logo-nav.webp",
-        campuses: ["Rawalpindi (Main Campus)"],
+        logo: "<?php echo esc_js( ccx_university_logo( 'bims' ) ); ?>",
+        campuses: <?php echo wp_json_encode( ccx_university_campuses( 'bims' ) ); ?>,
         programs: <?php echo wp_json_encode( ccx_university_programs( 'bims' ) ); ?>
       },
       UOR: {
         name: "University of Rawalpindi",
-        logo: "https://www.uor.edu.pk/frontend/academics/img/logo-primary.png",
-        campuses: ["Rawalpindi (Main Campus)"],
+        logo: "<?php echo esc_js( ccx_university_logo( 'uor' ) ); ?>",
+        campuses: <?php echo wp_json_encode( ccx_university_campuses( 'uor' ) ); ?>,
         programs: <?php echo wp_json_encode( ccx_university_programs( 'uor' ) ); ?>
       },
       NUML: {
         name: "National University of Modern Languages",
-        logo: "https://numl.edu.pk/templates/template10/images/numl_logo.png",
-        campuses: ["Islamabad (Main Campus)", "Lahore", "Faisalabad", "Multan", "Hyderabad", "Quetta", "Peshawar", "Karachi", "Rawalpindi", "Mirpur (Azad Kashmir)"],
+        logo: "<?php echo esc_js( ccx_university_logo( 'numl' ) ); ?>",
+        campuses: <?php echo wp_json_encode( ccx_university_campuses( 'numl' ) ); ?>,
         programs: <?php echo wp_json_encode( ccx_university_programs( 'numl' ) ); ?>
       },
       TMUC: {
         name: "The Millennium Universal College",
-        logo: "https://tmuc.edu.pk/wp-content/uploads/2019/10/Tmuc-logo.png",
-        campuses: ["Islamabad (Main Campus)", "Rawalpindi", "Gujranwala", "Faisalabad", "Lahore", "Karachi", "Peshawar", "Abbottabad", "Multan"],
+        logo: "<?php echo esc_js( ccx_university_logo( 'tmuc' ) ); ?>",
+        campuses: <?php echo wp_json_encode( ccx_university_campuses( 'tmuc' ) ); ?>,
         programs: <?php echo wp_json_encode( ccx_university_programs( 'tmuc' ) ); ?>
       },
       Bahria: {
         name: "Bahria University",
-        logo: "https://eduapply.online/wp-content/uploads/2026/08/bu_logo.png",
-        campuses: ["Islamabad", "Karachi", "Lahore"],
+        logo: "<?php echo esc_js( ccx_university_logo( 'bahria' ) ); ?>",
+        campuses: <?php echo wp_json_encode( ccx_university_campuses( 'bahria' ) ); ?>,
         programs: <?php echo wp_json_encode( ccx_university_programs( 'bahria' ) ); ?>
       },
       IQRA: {
         name: "Iqra University Islamabad Campus",
-        logo: "https://eduapply.online/wp-content/uploads/2026/08/Iqra-Logo.webp",
-        campuses: ["Islamabad (H-9 Campus)"],
+        logo: "<?php echo esc_js( ccx_university_logo( 'iqra' ) ); ?>",
+        campuses: <?php echo wp_json_encode( ccx_university_campuses( 'iqra' ) ); ?>,
         programs: <?php echo wp_json_encode( ccx_university_programs( 'iqra' ) ); ?>
       }
     };

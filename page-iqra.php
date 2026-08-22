@@ -88,6 +88,27 @@
 #iqra-page .iqra-btn-block{width:100%;}
 
 /* ============================================================
+   NOTIFICATION BAR (admission dates)
+   ============================================================ */
+#iqra-page .iqra-notify-bar{background:var(--iqra-gold); color:var(--iqra-navy);}
+#iqra-page .iqra-notify-inner{
+  display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+  padding:9px 0;
+}
+#iqra-page .iqra-notify-items{display:flex; flex-wrap:wrap; gap:18px;}
+#iqra-page .iqra-notify-item{display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:700;}
+#iqra-page .iqra-notify-item strong{font-weight:800;}
+#iqra-page .iqra-notify-apply{
+  flex-shrink:0; background:var(--iqra-navy); color:#fff; font-size:12px; font-weight:700;
+  padding:8px 18px; border-radius:999px; transition:background .2s ease, transform .2s ease;
+}
+#iqra-page .iqra-notify-apply:hover{background:var(--iqra-navy-700); transform:translateY(-1px);}
+@media (max-width:640px){
+  #iqra-page .iqra-notify-inner{justify-content:center; text-align:center;}
+  #iqra-page .iqra-notify-items{justify-content:center; gap:10px 16px;}
+}
+
+/* ============================================================
    TOP UTILITY BAR
    ============================================================ */
 #iqra-page .iqra-topbar{background:var(--iqra-navy); padding:8px 0; font-size:12px;}
@@ -305,6 +326,22 @@
 
 <div id="iqra-page">
 
+<?php $ccx_dates = ccx_admission_dates( 'iqra' ); ?>
+<?php if ( $ccx_dates['enabled'] ) : ?>
+<!-- ============================================================
+     NOTIFICATION BAR (admission dates + quick Apply Now)
+     ============================================================ -->
+<div class="iqra-notify-bar" id="iqra-notify-bar">
+  <div class="iqra-container iqra-notify-inner">
+    <div class="iqra-notify-items">
+      <span class="iqra-notify-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg> Last Date to Apply: <strong><?php echo esc_html( $ccx_dates['lastDate'] ); ?></strong></span>
+      <span class="iqra-notify-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Open Merit Based Admission: <strong><?php echo esc_html( $ccx_dates['meritDate'] ); ?></strong></span>
+    </div>
+    <a href="/admissions/apply?university=IQRA" class="iqra-notify-apply">Apply Now</a>
+  </div>
+</div>
+<?php endif; ?>
+
 <!-- ============================================================
      TOP UTILITY BAR
      ============================================================ -->
@@ -330,7 +367,7 @@
 <header class="iqra-header">
   <div class="iqra-container">
     <a href="/iqra" class="iqra-logo" aria-label="Iqra University home">
-      <img src="https://eduapply.online/wp-content/uploads/2026/08/Iqra-Logo.webp" alt="Iqra University logo">
+      <img src="<?php echo esc_url( ccx_university_logo( 'iqra' ) ); ?>" alt="Iqra University logo">
     </a>
 
     <ul class="iqra-nav" aria-label="Primary">
