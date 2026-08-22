@@ -689,8 +689,10 @@
 
       <a href="/ucp" class="ccx-uni-card ccx-reveal">
         <div class="ccx-uni-card-media">
-          <span class="ccx-uni-badge">UCP</span>
-          <img src="https://ucp.edu.pk/wp-content/uploads/2025/06/01.webp" alt="University of Central Punjab campus" loading="lazy">
+          <span class="ccx-uni-badge">
+            <img src="https://eduapply.online/wp-content/uploads/2026/08/faviconucp.png" alt="UCP">
+          </span>
+          <img src="https://eduapply.online/wp-content/uploads/2026/08/UCP-Hero-image.webp" alt="University of Central Punjab campus" loading="lazy">
         </div>
         <div class="ccx-uni-card-body">
           <h3>University of Central Punjab</h3>
@@ -715,7 +717,9 @@
 
       <a href="/uor" class="ccx-uni-card ccx-reveal">
         <div class="ccx-uni-card-media">
-          <span class="ccx-uni-badge">UOR</span>
+          <span class="ccx-uni-badge">
+            <img src="https://eduapply.online/wp-content/uploads/2026/08/uor-favicon.png" alt="UOR Favicon">
+          </span>
           <img src="https://eduapply.online/wp-content/uploads/2026/08/uor-intro.webp" alt="University of Rawalpindi campus" loading="lazy">
         </div>
         <div class="ccx-uni-card-body">
@@ -727,8 +731,10 @@
 
       <a href="/numl" class="ccx-uni-card ccx-reveal">
         <div class="ccx-uni-card-media">
-          <span class="ccx-uni-badge">NUML</span>
-          <img src="https://numl.edu.pk/templates/template10/images/numl_mainBldg.jpg" alt="NUML campus" loading="lazy">
+          <span class="ccx-uni-badge">
+            <img src="https://eduapply.online/wp-content/uploads/2026/08/favicon-1.png" alt="NUML Favicon">
+          </span>
+          <img src="https://eduapply.online/wp-content/uploads/2026/08/numl_mainBldg.webp" alt="NUML campus" loading="lazy">
         </div>
         <div class="ccx-uni-card-body">
           <h3>National University of Modern Languages</h3>
@@ -739,7 +745,9 @@
 
       <a href="/tmuc" class="ccx-uni-card ccx-reveal">
         <div class="ccx-uni-card-media">
-          <span class="ccx-uni-badge">TMUC</span>
+          <span class="ccx-uni-badge">
+            <img src="https://eduapply.online/wp-content/uploads/2026/08/cropped-Tmuc-logo-192x192-1.png" alt="TMUC Favicon">
+          </span>
           <img src="https://tmuc.edu.pk/wp-content/uploads/2019/10/Campus-tmuc-nationwide.jpg" alt="The Millennium Universal College campus" loading="lazy">
         </div>
         <div class="ccx-uni-card-body">
@@ -751,7 +759,9 @@
 
       <a href="/bahria" class="ccx-uni-card ccx-reveal">
         <div class="ccx-uni-card-media">
-          <span class="ccx-uni-badge">BU</span>
+          <span class="ccx-uni-badge">
+            <img src="https://eduapply.online/wp-content/uploads/2026/08/bu_logo.png" alt="Bahria Logo">
+          </span>
           <img src="https://www.bahria.edu.pk/Content/images/main/main_campus.jpg" alt="Bahria University campus" loading="lazy">
         </div>
         <div class="ccx-uni-card-body">
@@ -763,7 +773,9 @@
 
       <a href="/iqra" class="ccx-uni-card ccx-reveal">
         <div class="ccx-uni-card-media">
-          <span class="ccx-uni-badge">IQRA</span>
+          <span class="ccx-uni-badge">
+            <img src="https://eduapply.online/wp-content/uploads/2026/08/Iqra-logo-favicon-dark.png" alt="IQRA Logo Favicon">
+          </span>
           <img src="https://eduapply.online/wp-content/uploads/2026/08/admissionbannersp26.webp" alt="Iqra University Islamabad Campus" loading="lazy">
         </div>
         <div class="ccx-uni-card-body">

@@ -411,9 +411,6 @@
       <h2>Start Your Application</h2>
       <p>EduApply doesn't require a separate account — begin your Iqra University application directly, save your details in one guided form, and our team forwards it to the Admissions Office on your behalf.</p>
       <a href="/admissions/apply?university=IQRA" class="iqra-btn iqra-btn-navy iqra-btn-block">Apply Now →</a>
-      <div class="iqra-apply-divider">or</div>
-      <a href="https://wa.me/923155264264" target="_blank" rel="noopener" class="iqra-btn iqra-btn-outline iqra-btn-block">Chat with Admissions on WhatsApp</a>
-      <p class="iqra-apply-note">Applications are typically reviewed within 2–3 working days.</p>
     </div>
   </div>
 </section>
@@ -615,7 +612,6 @@
           <span>Visit the Admissions Office — our team will guide you through every step.</span>
         </div>
       </div>
-      <a href="https://wa.me/923155264264" target="_blank" rel="noopener" class="iqra-btn iqra-btn-green">Reserve via WhatsApp</a>
     </div>
   </div>
 </section>
@@ -625,50 +621,11 @@
      ============================================================ -->
 <footer class="iqra-footer" id="iqra-contact">
   <div class="iqra-container">
-    <div class="iqra-footer-grid">
-      <div>
-        <h5>Admissions Office</h5>
-        <p class="iqra-footer-line"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.68 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0122 16.92z"/></svg><a href="tel:+925111264264">+92 51 111 264 264 Ext. 199 | 231</a></p>
-        <p class="iqra-footer-line"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.68 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0122 16.92z"/></svg><a href="tel:+0514435207">051-4435207</a></p>
-        <p class="iqra-footer-line"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg><a href="mailto:admissions@iqraisb.edu.pk">admissions@iqraisb.edu.pk</a></p>
-        <p class="iqra-footer-line"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>Mon – Fri, 9:00 AM – 4:00 PM</span></p>
-        <div class="iqra-footer-social">
-          <a href="https://www.facebook.com/IUIsbCampus/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
-          <a href="https://www.instagram.com/iuisbcampus/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
-          <a href="#" aria-label="Twitter / X"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 3H22l-7.6 8.7L23 21h-6.8l-5.3-6.5L5 21H2l8.1-9.3L1.5 3h7l4.8 5.9L18.9 3z"/></svg></a>
-          <a href="https://iqra.edu.pk/" target="_blank" rel="noopener" aria-label="Website"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18 15 15 0 010-18z"/></svg></a>
-        </div>
-      </div>
-
-      <div>
-        <h5>WhatsApp</h5>
-        <p class="iqra-footer-line"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0012.05 4a8.94 8.94 0 00-7.74 13.4L3 21l3.7-1.28a8.9 8.9 0 004.34 1.12h.01A8.94 8.94 0 0021 12.32a8.87 8.87 0 00-3.4-6zM12.05 19.6a7.4 7.4 0 01-3.78-1.04l-.27-.16-2.8.97.94-2.73-.18-.28a7.44 7.44 0 01-1.15-3.98 7.4 7.4 0 0112.65-5.25 7.36 7.36 0 012.17 5.25 7.4 7.4 0 01-7.58 7.22z"/></svg><a href="https://wa.me/923155264264" target="_blank" rel="noopener">0315-5264264 (Primary)</a></p>
-        <p class="iqra-footer-line"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0012.05 4a8.94 8.94 0 00-7.74 13.4L3 21l3.7-1.28a8.9 8.9 0 004.34 1.12h.01A8.94 8.94 0 0021 12.32a8.87 8.87 0 00-3.4-6zM12.05 19.6a7.4 7.4 0 01-3.78-1.04l-.27-.16-2.8.97.94-2.73-.18-.28a7.44 7.44 0 01-1.15-3.98 7.4 7.4 0 0112.65-5.25 7.36 7.36 0 012.17 5.25 7.4 7.4 0 01-7.58 7.22z"/></svg><a href="https://wa.me/923345264264" target="_blank" rel="noopener">0334-5264264</a></p>
-        <p class="iqra-footer-line"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0012.05 4a8.94 8.94 0 00-7.74 13.4L3 21l3.7-1.28a8.9 8.9 0 004.34 1.12h.01A8.94 8.94 0 0021 12.32a8.87 8.87 0 00-3.4-6zM12.05 19.6a7.4 7.4 0 01-3.78-1.04l-.27-.16-2.8.97.94-2.73-.18-.28a7.44 7.44 0 01-1.15-3.98 7.4 7.4 0 0112.65-5.25 7.36 7.36 0 012.17 5.25 7.4 7.4 0 01-7.58 7.22z"/></svg><a href="https://wa.me/923215264264" target="_blank" rel="noopener">0321-5264264</a></p>
-        <a href="https://wa.me/923155264264" target="_blank" rel="noopener" class="iqra-btn iqra-btn-green" style="margin-top:8px;">Chat on WhatsApp</a>
-      </div>
-
-      <div>
-        <h5>Campus &amp; Links</h5>
-        <p class="iqra-footer-line"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Khayaban-e-Johar, H-9, Islamabad 44000</span></p>
-        <p class="iqra-footer-line"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18 15 15 0 010-18z"/></svg><a href="https://iuisl.iqra.edu.pk/" target="_blank" rel="noopener">iuisl.iqra.edu.pk</a></p>
-        <ul>
-          <li><a href="https://iuisl.iqra.edu.pk/" target="_blank" rel="noopener">Admission Criteria</a></li>
-          <li><a href="/iqra-fee-structure">Fee Structure</a></li>
-          <li><a href="#">Scholarships</a></li>
-        </ul>
-      </div>
-    </div>
-
     <div class="iqra-footer-bottom">
       <p>&copy; <span id="iqra-year"></span> Iqra University Islamabad Campus, via EduApply | iuisl.iqra.edu.pk | UAN: 051 111 264 264</p>
     </div>
   </div>
 </footer>
-
-<a href="https://wa.me/923155264264" target="_blank" rel="noopener" class="iqra-whatsapp-float" aria-label="Chat on WhatsApp">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.6 6.32A8.86 8.86 0 0012.05 4a8.94 8.94 0 00-7.74 13.4L3 21l3.7-1.28a8.9 8.9 0 004.34 1.12h.01A8.94 8.94 0 0021 12.32a8.87 8.87 0 00-3.4-6zM12.05 19.6a7.4 7.4 0 01-3.78-1.04l-.27-.16-2.8.97.94-2.73-.18-.28a7.44 7.44 0 01-1.15-3.98 7.4 7.4 0 0112.65-5.25 7.36 7.36 0 012.17 5.25 7.4 7.4 0 01-7.58 7.22zm4.08-5.55c-.22-.11-1.31-.65-1.51-.72-.2-.07-.35-.11-.5.11-.15.22-.57.72-.7.87-.13.15-.26.16-.48.05a6.1 6.1 0 01-1.8-1.11 6.8 6.8 0 01-1.24-1.55c-.13-.22 0-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.5-1.21-.69-1.66-.18-.43-.36-.37-.5-.38h-.43c-.15 0-.39.06-.6.28-.2.22-.79.77-.79 1.87 0 1.1.81 2.16.92 2.31.11.15 1.6 2.44 3.87 3.42.54.23.96.37 1.29.48.54.17 1.03.15 1.42.09.43-.06 1.31-.53 1.5-1.05.18-.51.18-.95.13-1.05-.06-.1-.2-.15-.42-.26z"/></svg>
-</a>
 
 </div><!-- /#iqra-page -->
 
