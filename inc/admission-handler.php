@@ -56,11 +56,32 @@ define('CCX_SMTP_SECURE', 'ssl');                        // 'tls' or 'ssl'
 define('CCX_SMTP_USERNAME', 'apply@eduapply.online');     // TODO: your SMTP username
 define('CCX_SMTP_PASSWORD', 'ZYx123!@#$%'); // TODO: your SMTP password / app password
 
-// TODO: who the application email is "from" and "to".
+// TODO: who the application email is "from".
 define('CCX_MAIL_FROM_ADDRESS', 'apply@eduapply.online');
 define('CCX_MAIL_FROM_NAME', 'EduApply Admissions');
-define('CCX_MAIL_TO_ADDRESS', 'apply@eduapply.online');   // where applications land
+
+// TODO: fallback "to" address, used when a university has no address below
+// (or isn't recognized), and also CC'd on every application as a safety-net
+// backup copy so nothing gets missed if a university inbox has a problem.
+define('CCX_MAIL_TO_ADDRESS', 'apply@eduapply.online');
 define('CCX_MAIL_TO_NAME', 'Admissions Team');
+
+// ------------------------------------------------------------
+// TODO: per-university destination emails.
+// Keys MUST match the `university` value the form submits — these are the
+// same codes used in ccxApplyUniversities in page-apply.php (UCP, BIMS,
+// UOR, NUML, TMUC, Bahria, IQRA). Replace each placeholder with the real
+// inbox for that university once it's set up in Hostinger.
+// ------------------------------------------------------------
+define('CCX_UNIVERSITY_EMAILS', array(
+	'UCP'    => 'ucp@eduapply.online',
+	'BIMS'   => 'bims@eduapply.online',
+	'UOR'    => 'uor@eduapply.online',
+	'NUML'   => 'numl@eduapply.online',
+	'TMUC'   => 'tmuc@eduapply.online',
+	'Bahria' => 'bahria@eduapply.online',
+	'IQRA'   => 'iqra@eduapply.online',
+));
 
 // TODO: your webhook URL for lead tracking (Zapier / Make / CRM / custom).
 // Leave blank ('') to skip the webhook POST entirely.
@@ -308,8 +329,26 @@ function ccx_handle_admission_submission()
 				: PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
 			$mail->Port = CCX_SMTP_PORT;
 
+			// ---- Route to the correct university inbox ----
+			// Look up the destination by the submitted `university` code.
+			// If it's not in the map (typo, new university not yet added,
+			// etc.), fall back to the central admin address so the lead
+			// is never silently lost.
+			$university_key = $data['university'];
+			$primary_to      = isset(CCX_UNIVERSITY_EMAILS[$university_key])
+				? CCX_UNIVERSITY_EMAILS[$university_key]
+				: CCX_MAIL_TO_ADDRESS;
+
 			$mail->setFrom(CCX_MAIL_FROM_ADDRESS, CCX_MAIL_FROM_NAME);
-			$mail->addAddress(CCX_MAIL_TO_ADDRESS, CCX_MAIL_TO_NAME);
+			$mail->addAddress($primary_to, CCX_MAIL_TO_NAME);
+
+			// Always CC the central admin address as a safety-net backup
+			// copy, unless it's already the primary recipient (avoids a
+			// duplicate copy landing in the same inbox).
+			if ($primary_to !== CCX_MAIL_TO_ADDRESS) {
+				$mail->addCC(CCX_MAIL_TO_ADDRESS, CCX_MAIL_TO_NAME);
+			}
+
 			$mail->addReplyTo($data['email'], $data['fullName']);
 
 			foreach ($saved_files as $info) {
