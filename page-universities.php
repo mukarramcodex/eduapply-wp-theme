@@ -866,8 +866,8 @@
     <button type="button" class="ccx-modal-close" id="ccx-modal-close" aria-label="Close admission inquiry form">&times;</button>
     <div class="ccx-modal-header">
       <p class="ccx-eyebrow">Admissions</p>
-      <h3 id="ccx-modal-title">Admission Inquiry</h3>
-      <p class="ccx-modal-sub">Share your details and we'll open WhatsApp with your inquiry ready to send — pick the university you're interested in.</p>
+      <h3 id="ccx-modal-title"><?php echo esc_html( get_theme_mod( 'ccx_inquiry_title', 'Admission Inquiry' ) ); ?></h3>
+      <p class="ccx-modal-sub"><?php echo esc_html( get_theme_mod( 'ccx_inquiry_subtitle', "Share your details and we'll open WhatsApp with your inquiry ready to send — pick the university you're interested in." ) ); ?></p>
     </div>
 
     <form id="ccx-admission-form" novalidate>
@@ -897,6 +897,7 @@
             <option value="NUML">NUML</option>
             <option value="TMUC">The Millennium Universal College</option>
             <option value="Bahria">Bahria University</option>
+            <option value="IQRA">Iqra University Islamabad Campus</option>
           </select>
           <span class="ccx-field-error">Please select a university.</span>
         </div>
@@ -926,7 +927,7 @@ var ccxUniversitiesPage = (function(){
   "use strict";
 
   var ccxConfig = {
-    whatsappNumber: "", // TODO: set before going live — keep in sync with the index page
+    whatsappNumber: "<?php echo esc_js( ccx_whatsapp_number() ); ?>",
     whatsappMessage: "Hello, I would like to get information about university admissions."
   };
 
@@ -987,14 +988,7 @@ var ccxUniversitiesPage = (function(){
     var form = document.getElementById("ccx-admission-form");
     if(!overlay || !closeBtn || !form) return;
 
-    var universityWhatsapp = {
-      UCP: "",
-      BIMS: "923333332467",
-      UOR: "",
-      NUML: "",
-      TMUC: "",
-      Bahria: ""
-    };
+    var universityWhatsapp = <?php echo wp_json_encode( ccx_whatsapp_map() ); ?>;
 
     function ccxOpenModal(prefill){
       overlay.classList.add("ccx-modal-open");

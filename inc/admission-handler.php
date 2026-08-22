@@ -47,45 +47,13 @@ if (! defined('ABSPATH')) {
 }
 
 // ============================================================
-// CONFIG — fill these in before going live
+// CONFIG
 // ============================================================
-// TODO: SMTP server details (ask your email/hosting provider if unsure).
-define('CCX_SMTP_HOST', 'smtp.hostinger.com');        // e.g. smtp.gmail.com, smtp.office365.com
-define('CCX_SMTP_PORT', 465);                           // 587 = STARTTLS, 465 = SSL
-define('CCX_SMTP_SECURE', 'ssl');                        // 'tls' or 'ssl'
-define('CCX_SMTP_USERNAME', 'apply@eduapply.online');     // TODO: your SMTP username
-define('CCX_SMTP_PASSWORD', 'ZYx123!@#$%'); // TODO: your SMTP password / app password
-
-// TODO: who the application email is "from".
-define('CCX_MAIL_FROM_ADDRESS', 'apply@eduapply.online');
-define('CCX_MAIL_FROM_NAME', 'EduApply Admissions');
-
-// TODO: fallback "to" address, used when a university has no address below
-// (or isn't recognized), and also CC'd on every application as a safety-net
-// backup copy so nothing gets missed if a university inbox has a problem.
-define('CCX_MAIL_TO_ADDRESS', 'apply@eduapply.online');
-define('CCX_MAIL_TO_NAME', 'Admissions Team');
-
-// ------------------------------------------------------------
-// TODO: per-university destination emails.
-// Keys MUST match the `university` value the form submits — these are the
-// same codes used in ccxApplyUniversities in page-apply.php (UCP, BIMS,
-// UOR, NUML, TMUC, Bahria, IQRA). Replace each placeholder with the real
-// inbox for that university once it's set up in Hostinger.
-// ------------------------------------------------------------
-define('CCX_UNIVERSITY_EMAILS', array(
-	'UCP'    => 'ucp@eduapply.online',
-	'BIMS'   => 'bims@eduapply.online',
-	'UOR'    => 'uor@eduapply.online',
-	'NUML'   => 'numl@eduapply.online',
-	'TMUC'   => 'tmuc@eduapply.online',
-	'Bahria' => 'bahria@eduapply.online',
-	'IQRA'   => 'iqra@eduapply.online',
-));
-
-// TODO: your webhook URL for lead tracking (Zapier / Make / CRM / custom).
-// Leave blank ('') to skip the webhook POST entirely.
-define('CCX_WEBHOOK_URL', '');
+// SMTP host/port/secure, from/to addresses, per-university lead emails,
+// and the webhook URL are all editable at Appearance → Customize →
+// EduApply Settings → Mail & Lead Routing. See inc/customizer.php for
+// the ccx_mail_config() / ccx_university_email() getters used below —
+// nothing here needs to be hand-edited anymore.
 
 define('CCX_MAX_FILE_SIZE_BYTES', 5 * 1024 * 1024); // 5MB, matches the frontend
 define('CCX_ALLOWED_MIME_TYPES', array('application/pdf', 'image/jpeg', 'image/png'));
@@ -318,35 +286,36 @@ function ccx_handle_admission_submission()
 
 	if ($phpmailer_available) {
 		try {
+			$cfg = ccx_mail_config();
+
 			$mail = new PHPMailer\PHPMailer\PHPMailer(true);
 			$mail->isSMTP();
-			$mail->Host       = CCX_SMTP_HOST;
+			$mail->Host       = $cfg['smtp_host'];
 			$mail->SMTPAuth   = true;
-			$mail->Username   = CCX_SMTP_USERNAME;
-			$mail->Password   = CCX_SMTP_PASSWORD;
-			$mail->SMTPSecure = 'ssl' === CCX_SMTP_SECURE
+			$mail->Username   = $cfg['smtp_username'];
+			$mail->Password   = $cfg['smtp_password'];
+			$mail->SMTPSecure = 'ssl' === $cfg['smtp_secure']
 				? PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS
 				: PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-			$mail->Port = CCX_SMTP_PORT;
+			$mail->Port = $cfg['smtp_port'];
 
 			// ---- Route to the correct university inbox ----
 			// Look up the destination by the submitted `university` code.
-			// If it's not in the map (typo, new university not yet added,
+			// If it's not recognized (typo, new university not yet added,
 			// etc.), fall back to the central admin address so the lead
 			// is never silently lost.
 			$university_key = $data['university'];
-			$primary_to      = isset(CCX_UNIVERSITY_EMAILS[$university_key])
-				? CCX_UNIVERSITY_EMAILS[$university_key]
-				: CCX_MAIL_TO_ADDRESS;
+			$configured_to   = ccx_university_email($university_key);
+			$primary_to      = '' !== $configured_to ? $configured_to : $cfg['to_address'];
 
-			$mail->setFrom(CCX_MAIL_FROM_ADDRESS, CCX_MAIL_FROM_NAME);
-			$mail->addAddress($primary_to, CCX_MAIL_TO_NAME);
+			$mail->setFrom($cfg['from_address'], $cfg['from_name']);
+			$mail->addAddress($primary_to, $cfg['to_name']);
 
 			// Always CC the central admin address as a safety-net backup
 			// copy, unless it's already the primary recipient (avoids a
 			// duplicate copy landing in the same inbox).
-			if ($primary_to !== CCX_MAIL_TO_ADDRESS) {
-				$mail->addCC(CCX_MAIL_TO_ADDRESS, CCX_MAIL_TO_NAME);
+			if ($primary_to !== $cfg['to_address']) {
+				$mail->addCC($cfg['to_address'], $cfg['to_name']);
 			}
 
 			$mail->addReplyTo($data['email'], $data['fullName']);
@@ -372,7 +341,8 @@ function ccx_handle_admission_submission()
 	// POST LEAD TO WEBHOOK
 	// ============================================================
 	$webhook_sent = false;
-	if ('' !== CCX_WEBHOOK_URL) {
+	$webhook_url  = ccx_mail_config()['webhook_url'];
+	if ('' !== $webhook_url) {
 		$webhook_payload = array_merge(
 			$data,
 			array(
@@ -391,7 +361,7 @@ function ccx_handle_admission_submission()
 		);
 
 		wp_remote_post(
-			CCX_WEBHOOK_URL,
+			$webhook_url,
 			array(
 				'headers' => array('Content-Type' => 'application/json'),
 				'body'    => wp_json_encode($webhook_payload),

@@ -1227,83 +1227,56 @@
    REAL UNIVERSITY DATA — same verified campuses/programs used
    throughout the rest of this site. Nothing invented here.
    ============================================================ */
+    /**
+     * Programs for each university now come from Appearance → Customize →
+     * EduApply Settings → Application Form — Programs, so this is the one
+     * place a program list can be edited and every ?program= deep link
+     * (from marketing-page faculty/department cards) stays in sync
+     * automatically. Name/logo/campus fields are unchanged from before.
+     */
     var ccxApplyUniversities = {
       UCP: {
         name: "University of Central Punjab",
         logo: "https://ucp.edu.pk/inc/uploads/2019/06/ucp-sticky-logo-white-1.png",
         logoDarkBg: true,
         campuses: ["Lahore (Main Campus)"],
-        programs: [
-          "Faculty of Management Sciences", "Faculty of Information Technology & Computer Science", "Faculty of Engineering",
-          "Faculty of Pharmaceutical Sciences", "Faculty of Media & Mass Communication", "Faculty of Law",
-          "Faculty of Languages & Literature", "Faculty of Humanities & Social Sciences", "Faculty of Science & Technology",
-          "Associate Degree Programs"
-        ]
+        programs: <?php echo wp_json_encode( ccx_university_programs( 'ucp' ) ); ?>
       },
       BIMS: {
         name: "Barani Institute of Management & Sciences (BIMS)",
         logo: "https://eduapply.online/wp-content/uploads/2026/08/bims-logo-nav.webp",
         campuses: ["Rawalpindi (Main Campus)"],
-        programs: [
-          "BBA (Hons) 4 Years", "BBA 2 Years", "BS Accounts & Finance", "BS Economics", "BSCS (General Computing)",
-          "BSCS (Software Engineering)", "BSCS (Artificial Intelligence)", "BS Environmental Sciences", "BS Mathematics",
-          "BS Statistics", "BSc. Hons HND (Human Nutrition & Dietetics)", "BS MLT (Medical Laboratory Technology)"
-        ]
+        programs: <?php echo wp_json_encode( ccx_university_programs( 'bims' ) ); ?>
       },
       UOR: {
         name: "University of Rawalpindi",
         logo: "https://www.uor.edu.pk/frontend/academics/img/logo-primary.png",
         campuses: ["Rawalpindi (Main Campus)"],
-        programs: [
-          "Business Administration", "Doctor of Pharmacy (Pharm-D)", "Accounting and Finance", "Media and Communication Studies",
-          "Digital Design and Computer Arts", "Interior Design", "Islamic Sciences", "Psychology", "Computer Science",
-          "Software Engineering", "English and Linguistic Studies"
-        ]
+        programs: <?php echo wp_json_encode( ccx_university_programs( 'uor' ) ); ?>
       },
       NUML: {
         name: "National University of Modern Languages",
         logo: "https://numl.edu.pk/templates/template10/images/numl_logo.png",
         campuses: ["Islamabad (Main Campus)", "Lahore", "Faisalabad", "Multan", "Hyderabad", "Quetta", "Peshawar", "Karachi", "Rawalpindi", "Mirpur (Azad Kashmir)"],
-        programs: ["Undergraduate Programs", "Postgraduate Programs", "Doctoral Programs", "Language Courses", "Online Languages"]
+        programs: <?php echo wp_json_encode( ccx_university_programs( 'numl' ) ); ?>
       },
       TMUC: {
         name: "The Millennium Universal College",
         logo: "https://tmuc.edu.pk/wp-content/uploads/2019/10/Tmuc-logo.png",
         campuses: ["Islamabad (Main Campus)", "Rawalpindi", "Gujranwala", "Faisalabad", "Lahore", "Karachi", "Peshawar", "Abbottabad", "Multan"],
-        programs: [
-          "BA (Hons) Business Administration", "BSc Computer Science", "LLB Hons", "BA (Hons) Fashion Textile", "MBA", "BSc Psychology"
-        ]
+        programs: <?php echo wp_json_encode( ccx_university_programs( 'tmuc' ) ); ?>
       },
       Bahria: {
         name: "Bahria University",
         logo: "https://eduapply.online/wp-content/uploads/2026/08/bu_logo.png",
         campuses: ["Islamabad", "Karachi", "Lahore"],
-        programs: [
-          "Computer Science", "LLB", "Pharm-D", "Software Engineering", "Cyber Security",
-          "BS Nursing", "MS", "BS – Program Not Specified", "Other", "Electrical Engineering",
-          "Accounting & Finance", "Political Science", "English", "BS Respiratory Therapist",
-          "Business Administration / BBA", "International Relations (IR)", "Information Technology (IT)",
-          "BS Financial Technology", "MPhil Islamic Studies", "Mechanical Engineering", "Business Analytics",
-          "Psychology", "MBA / MPhil Linguistics", "Civil Rights", "Law", "Data Science & Analytics",
-          "MS Clinical Psychology", "B.Ed", "Artificial Intelligence (AI)", "Operation Theatre Technology"
-        ]
+        programs: <?php echo wp_json_encode( ccx_university_programs( 'bahria' ) ); ?>
       },
       IQRA: {
         name: "Iqra University Islamabad Campus",
         logo: "https://eduapply.online/wp-content/uploads/2026/08/Iqra-Logo.webp",
         campuses: ["Islamabad (H-9 Campus)"],
-        programs: [
-          "BS Computer Science (BSCS)", "Associate Degree (AD) Computing", "BS Artificial Intelligence (BSAI)",
-          "BS Software Engineering (BSSE)", "MS Computer Science", "MS Software Engineering", "PhD Computer Science",
-          "AD in Accounting & Finance", "AD in Digital Marketing", "AD in Business Analytics", "BBA (Hons)",
-          "BS Business Analytics", "BS Accounting and Finance", "BS Commerce", "MBA", "MS Management Science",
-          "PhD Business Administration", "Diploma in Fashion Design (BFD)", "Diploma in Textile Design (BTD)",
-          "AD in International Relations", "AD in English", "BS International Relations (BSIR)", "BS English",
-          "M.Phil International Development Studies (IDS)", "M.Phil International Relations (IR)",
-          "AD in Film & TV", "AD in Animation", "BS Media Studies (BMS)", "Doctor of Pharmacy (Pharm.D)",
-          "AD in Psychology", "BS Psychology", "BS Psychology (Clinical)", "BS Medical Lab Technology (MLT)",
-          "BS Human Nutrition & Dietetics (HND)"
-        ]
+        programs: <?php echo wp_json_encode( ccx_university_programs( 'iqra' ) ); ?>
       }
     };
 
@@ -1344,8 +1317,8 @@
     ];
 
     var ccxApplyConfig = {
-      // TODO: set the real WhatsApp destination (kept in sync with the rest of the site).
-      whatsappNumber: "",
+      // Set at Appearance → Customize → EduApply Settings → WhatsApp Numbers → Default / General Helpline.
+      whatsappNumber: "<?php echo esc_js( ccx_whatsapp_number() ); ?>",
       whatsappMessage: "Hello, I need help with my admission application.",
       // Submits via WordPress's own admin-ajax.php system (not a standalone
       // submit.php) — see inc/admission-handler.php for the PHP side.

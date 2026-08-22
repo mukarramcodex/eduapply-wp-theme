@@ -1315,15 +1315,17 @@
 <!-- ============================================================
      WELCOME / ADMISSION ANNOUNCEMENT POPUP (auto-shows once per session)
      ============================================================ -->
+<?php $ccx_welcome = ccx_welcome_popup( 'uor' ); ?>
+<?php if ( $ccx_welcome['enabled'] && $ccx_welcome['image'] ) : ?>
 <div class="uor-welcome-overlay" id="uor-welcome-modal" role="dialog" aria-modal="true" aria-label="UOR Admissions" aria-hidden="true">
   <div class="uor-welcome-panel">
     <button type="button" class="uor-welcome-close" id="uor-welcome-close" aria-label="Close">&times;</button>
     <button type="button" class="uor-welcome-image uor-quickapply-trigger" id="uor-welcome-apply" aria-label="Apply Now at UOR">
-      <!-- TODO: replace with official UOR photography — dummy stock placeholder for now -->
-      <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=900&q=75" alt="UOR admissions — click to apply now">
+      <img src="<?php echo esc_url( $ccx_welcome['image'] ); ?>" alt="<?php echo esc_attr( $ccx_welcome['alt'] ); ?>">
     </button>
   </div>
 </div>
+<?php endif; ?>
 </div><!-- /#uor-page -->
 
 <script>
@@ -1766,7 +1768,7 @@ var uorHomepage = (function(){
     if(!overlay || !closeBtn || !form) return;
 
     // TODO: set UOR's real WhatsApp/admissions helpline number before going live
-    var uorAdmissionWhatsapp = "";
+    var uorAdmissionWhatsapp = "<?php echo esc_js( ccx_whatsapp_number( 'UOR' ) ); ?>";
 
     function uorOpenModal(prefill){
       overlay.classList.add("uor-modal-open");

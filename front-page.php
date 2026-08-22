@@ -1215,8 +1215,8 @@
     <button type="button" class="ccx-modal-close" id="ccx-modal-close" aria-label="Close admission inquiry form">&times;</button>
     <div class="ccx-modal-header">
       <p class="ccx-eyebrow">Admissions</p>
-      <h3 id="ccx-modal-title">Admission Inquiry</h3>
-      <p class="ccx-modal-sub">Share your details and we'll open WhatsApp with your inquiry ready to send — pick the university you're interested in.</p>
+      <h3 id="ccx-modal-title"><?php echo esc_html( get_theme_mod( 'ccx_inquiry_title', 'Admission Inquiry' ) ); ?></h3>
+      <p class="ccx-modal-sub"><?php echo esc_html( get_theme_mod( 'ccx_inquiry_subtitle', "Share your details and we'll open WhatsApp with your inquiry ready to send — pick the university you're interested in." ) ); ?></p>
     </div>
 
     <form id="ccx-admission-form" novalidate>
@@ -1281,7 +1281,7 @@ var ccxCampusCompass = (function(){
   /* ---------- CONFIG ---------- */
   // Set this to the real business WhatsApp number (country code, no + or spaces), e.g. "923001234567"
   var ccxConfig = {
-    whatsappNumber: "", // TODO: set before going live
+    whatsappNumber: "<?php echo esc_js( ccx_whatsapp_number() ); ?>",
     whatsappMessage: "Hello, I would like to get information about university admissions."
   };
 
@@ -1328,15 +1328,7 @@ var ccxCampusCompass = (function(){
     var form = document.getElementById("ccx-admission-form");
     if(!overlay || !closeBtn || !form) return;
 
-    var universityWhatsapp = {
-      UCP: "",
-      BIMS: "923333332467",
-      UOR: "",
-      NUML: "",
-      TMUC: "",
-      Bahria: "",
-      IQRA: "923155264264"
-    };
+    var universityWhatsapp = <?php echo wp_json_encode( ccx_whatsapp_map() ); ?>;
 
     function ccxOpenModal(prefill){
       overlay.classList.add("ccx-modal-open");

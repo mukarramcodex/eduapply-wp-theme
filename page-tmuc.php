@@ -1319,15 +1319,17 @@
 <!-- ============================================================
      WELCOME / ADMISSION ANNOUNCEMENT POPUP (auto-shows once per session)
      ============================================================ -->
+<?php $ccx_welcome = ccx_welcome_popup( 'tmuc' ); ?>
+<?php if ( $ccx_welcome['enabled'] && $ccx_welcome['image'] ) : ?>
 <div class="tmuc-welcome-overlay" id="tmuc-welcome-modal" role="dialog" aria-modal="true" aria-label="TMUC Admissions" aria-hidden="true">
   <div class="tmuc-welcome-panel">
     <button type="button" class="tmuc-welcome-close" id="tmuc-welcome-close" aria-label="Close">&times;</button>
     <button type="button" class="tmuc-welcome-image tmuc-quickapply-trigger" id="tmuc-welcome-apply" aria-label="Apply Now at TMUC">
-      <!-- TODO: replace with official TMUC photography — dummy stock placeholder for now -->
-      <img src="https://images.unsplash.com/photo-1519452575417-564c1401ecc0?auto=format&fit=crop&w=900&q=75" alt="TMUC admissions — click to apply now">
+      <img src="<?php echo esc_url( $ccx_welcome['image'] ); ?>" alt="<?php echo esc_attr( $ccx_welcome['alt'] ); ?>">
     </button>
   </div>
 </div>
+<?php endif; ?>
 
 </div><!-- /#tmuc-page -->
 
@@ -1768,7 +1770,7 @@ var tmucHomepage = (function(){
     if(!overlay || !closeBtn || !form) return;
 
     // TODO: set TMUC's real WhatsApp/admissions helpline number before going live
-    var tmucAdmissionWhatsapp = "";
+    var tmucAdmissionWhatsapp = "<?php echo esc_js( ccx_whatsapp_number( 'TMUC' ) ); ?>";
 
     function tmucOpenModal(prefill){
       overlay.classList.add("tmuc-modal-open");

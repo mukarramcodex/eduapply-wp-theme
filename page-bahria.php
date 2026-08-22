@@ -3173,6 +3173,8 @@
       </div>
     </div>
 
+    <?php $ccx_announce = ccx_bahria_announcement(); ?>
+    <?php if ( $ccx_announce['enabled'] && $ccx_announce['text'] ) : ?>
     <!-- ============================================================
      ANNOUNCEMENT POPUP
      ============================================================ -->
@@ -3181,21 +3183,22 @@
     <div class="bahria-announce" id="bahria-announce">
       <div class="bahria-announce-header">
         <span class="bahria-announce-icon">📢</span>
-        <span class="bahria-announce-label">Important Announcement</span>
+        <span class="bahria-announce-label"><?php echo esc_html( $ccx_announce['label'] ); ?></span>
         <button class="bahria-announce-close" id="bahria-announce-close" aria-label="Dismiss announcement">&times;</button>
       </div>
       <div class="bahria-announce-body">
         <ul>
-          <li><a href="#">Sindh Educational Endowment Fund (SEEF) Trust scholarship applications are open for Academic Year 2025–2026</a></li>
+          <li>
+            <?php if ( $ccx_announce['link'] ) : ?>
+              <a href="<?php echo esc_url( $ccx_announce['link'] ); ?>"><?php echo esc_html( $ccx_announce['text'] ); ?></a>
+            <?php else : ?>
+              <?php echo esc_html( $ccx_announce['text'] ); ?>
+            <?php endif; ?>
+          </li>
         </ul>
-        <!-- Optional: image or extra text goes here -->
-        <!--
-    <div class="bahria-announce-extra">
-      <img src="https://eduapply.online/wp-content/uploads/2026/08/example.jpg" alt="">
-    </div>
-    -->
       </div>
     </div>
+    <?php endif; ?>
 
   </div><!-- /#bahria-page -->
 
@@ -3732,7 +3735,7 @@
         if (!overlay || !closeBtn || !form) return;
 
         // TODO: set Bahria's real WhatsApp/admissions helpline number before going live
-        var bahriaAdmissionWhatsapp = "";
+        var bahriaAdmissionWhatsapp = "<?php echo esc_js( ccx_whatsapp_number( 'Bahria' ) ); ?>";
 
         function bahriaOpenModal(prefill) {
           overlay.classList.add("bahria-modal-open");

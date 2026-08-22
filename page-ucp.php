@@ -1664,15 +1664,17 @@
 <!-- ============================================================
      WELCOME / ADMISSION ANNOUNCEMENT POPUP (auto-shows once per session)
      ============================================================ -->
+<?php $ccx_welcome = ccx_welcome_popup( 'ucp' ); ?>
+<?php if ( $ccx_welcome['enabled'] && $ccx_welcome['image'] ) : ?>
 <div class="ucp-welcome-overlay" id="ucp-welcome-modal" role="dialog" aria-modal="true" aria-label="UCP Admissions" aria-hidden="true">
   <div class="ucp-welcome-panel">
     <button type="button" class="ucp-welcome-close" id="ucp-welcome-close" aria-label="Close">&times;</button>
     <button type="button" class="ucp-welcome-image ucp-quickapply-trigger" id="ucp-welcome-apply" aria-label="Apply Now at UCP">
-      <!-- TODO: replace with official UCP photography — dummy stock placeholder for now -->
-      <img src="https://eduapply.online/wp-content/uploads/2026/08/web-popup.webp?auto=format&fit=crop&w=900&q=75" alt="UCP admissions — click to apply now">
+      <img src="<?php echo esc_url( $ccx_welcome['image'] ); ?>" alt="<?php echo esc_attr( $ccx_welcome['alt'] ); ?>">
     </button>
   </div>
 </div>
+<?php endif; ?>
 
 </div><!-- /#ucp-page -->
 
@@ -1681,7 +1683,7 @@ var ucpHomepage = (function(){
   "use strict";
 
   var ucpConfig = {
-    whatsappNumber: "", // TODO: set the real UCP WhatsApp/helpline number before going live
+    whatsappNumber: "<?php echo esc_js( ccx_whatsapp_number( 'UCP' ) ); ?>",
     whatsappMessage: "Hello, I have a question about UCP admissions."
   };
 
@@ -2130,7 +2132,7 @@ var ucpHomepage = (function(){
     if(!overlay || !closeBtn || !form) return;
 
     // TODO: set UCP's real WhatsApp/admissions helpline number before going live
-    var ucpAdmissionWhatsapp = "";
+    var ucpAdmissionWhatsapp = "<?php echo esc_js( ccx_whatsapp_number( 'UCP' ) ); ?>";
 
     function ucpOpenModal(prefill){
       overlay.classList.add("ucp-modal-open");

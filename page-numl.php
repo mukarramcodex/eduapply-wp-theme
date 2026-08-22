@@ -1420,14 +1420,17 @@
 <!-- ============================================================
      WELCOME / ADMISSION ANNOUNCEMENT POPUP (auto-shows once per session)
      ============================================================ -->
+<?php $ccx_welcome = ccx_welcome_popup( 'numl' ); ?>
+<?php if ( $ccx_welcome['enabled'] && $ccx_welcome['image'] ) : ?>
 <div class="numl-welcome-overlay" id="numl-welcome-modal" role="dialog" aria-modal="true" aria-label="NUML Admissions" aria-hidden="true">
   <div class="numl-welcome-panel">
     <button type="button" class="numl-welcome-close" id="numl-welcome-close" aria-label="Close">&times;</button>
     <button type="button" class="numl-welcome-image numl-quickapply-trigger" id="numl-welcome-apply" aria-label="Apply Now at NUML">
-      <img src="https://eduapply.online/wp-content/uploads/2026/08/7898AdmissionPhase-II-Fall26.webp" alt="NUML admissions — click to apply now">
+      <img src="<?php echo esc_url( $ccx_welcome['image'] ); ?>" alt="<?php echo esc_attr( $ccx_welcome['alt'] ); ?>">
     </button>
   </div>
 </div>
+<?php endif; ?>
 
 </div><!-- /#numl-page -->
 
@@ -1865,7 +1868,7 @@ var numlHomepage = (function(){
     if(!overlay || !closeBtn || !form) return;
 
     // TODO: set NUML's real WhatsApp/admissions helpline number before going live
-    var numlAdmissionWhatsapp = "";
+    var numlAdmissionWhatsapp = "<?php echo esc_js( ccx_whatsapp_number( 'NUML' ) ); ?>";
 
     function numlOpenModal(prefill){
       overlay.classList.add("numl-modal-open");

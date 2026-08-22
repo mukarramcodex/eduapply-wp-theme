@@ -107,3 +107,9 @@ require_once get_template_directory() . '/inc/admission-handler.php';
  * update per admission cycle. See inc/resource-documents.php.
  */
 require_once get_template_directory() . '/inc/resource-documents.php';
+
+/**
+ * Customizer: mail/lead routing, WhatsApp numbers, popup content, and
+ * per-university application-form program lists. See inc/customizer.php.
+ */
+require_once get_template_directory() . '/inc/customizer.php';

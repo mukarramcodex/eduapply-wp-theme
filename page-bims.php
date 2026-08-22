@@ -3597,7 +3597,7 @@
             <a href="https://twitter.com/bimsedu" target="_blank" rel="noopener" aria-label="BIMS on Twitter/X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M18.9 3H22l-7.6 8.7L23 21h-6.8l-5.3-6.5L5 21H2l8.1-9.3L1.5 3h7l4.8 5.9L18.9 3z" />
               </svg></a>
-            <a href="https://wa.me/923333332467" target="_blank" rel="noopener" aria-label="BIMS on WhatsApp"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <a href="https://wa.me/<?php echo esc_attr( ccx_whatsapp_number( 'BIMS' ) ); ?>" target="_blank" rel="noopener" aria-label="BIMS on WhatsApp"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.6 6.32A8.86 8.86 0 0012.05 4a8.94 8.94 0 00-7.74 13.4L3 21l3.7-1.28a8.9 8.9 0 004.34 1.12h.01A8.94 8.94 0 0021 12.32a8.87 8.87 0 00-3.4-6z" />
               </svg></a>
           </div>
@@ -3605,7 +3605,7 @@
       </div>
     </footer>
 
-    <a href="https://wa.me/923333332467" target="_blank" rel="noopener" class="bims-whatsapp" id="bims-whatsapp" aria-label="Chat with BIMS on WhatsApp">
+    <a href="https://wa.me/<?php echo esc_attr( ccx_whatsapp_number( 'BIMS' ) ); ?>" target="_blank" rel="noopener" class="bims-whatsapp" id="bims-whatsapp" aria-label="Chat with BIMS on WhatsApp">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff">
         <path d="M17.6 6.32A8.86 8.86 0 0012.05 4a8.94 8.94 0 00-7.74 13.4L3 21l3.7-1.28a8.9 8.9 0 004.34 1.12h.01A8.94 8.94 0 0021 12.32a8.87 8.87 0 00-3.4-6zM12.05 19.6a7.4 7.4 0 01-3.78-1.04l-.27-.16-2.8.97.94-2.73-.18-.28a7.44 7.44 0 01-1.15-3.98 7.4 7.4 0 0112.65-5.25 7.36 7.36 0 012.17 5.25 7.4 7.4 0 01-7.58 7.22zm4.08-5.55c-.22-.11-1.31-.65-1.51-.72-.2-.07-.35-.11-.5.11-.15.22-.57.72-.7.87-.13.15-.26.16-.48.05a6.1 6.1 0 01-1.8-1.11 6.8 6.8 0 01-1.24-1.55c-.13-.22 0-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.5-1.21-.69-1.66-.18-.43-.36-.37-.5-.38h-.43c-.15 0-.39.06-.6.28-.2.22-.79.77-.79 1.87 0 1.1.81 2.16.92 2.31.11.15 1.6 2.44 3.87 3.42.54.23.96.37 1.29.48.54.17 1.03.15 1.42.09.43-.06 1.31-.53 1.5-1.05.18-.51.18-.95.13-1.05-.06-.1-.2-.15-.42-.26z" />
       </svg>
@@ -3891,15 +3891,17 @@
     <!-- ============================================================
      WELCOME / ADMISSION ANNOUNCEMENT POPUP (auto-shows once per session)
      ============================================================ -->
+    <?php $ccx_welcome = ccx_welcome_popup( 'bims' ); ?>
+    <?php if ( $ccx_welcome['enabled'] && $ccx_welcome['image'] ) : ?>
     <div class="bims-welcome-overlay" id="bims-welcome-modal" role="dialog" aria-modal="true" aria-label="BIMS Admissions" aria-hidden="true">
       <div class="bims-welcome-panel">
         <button type="button" class="bims-welcome-close" id="bims-welcome-close" aria-label="Close">&times;</button>
         <button type="button" class="bims-welcome-image bims-quickapply-trigger" id="bims-welcome-apply" aria-label="Apply Now at BIMS">
-          <!-- TODO: replace with official BIMS photography — dummy stock placeholder for now -->
-          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=75" alt="BIMS admissions — click to apply now">
+          <img src="<?php echo esc_url( $ccx_welcome['image'] ); ?>" alt="<?php echo esc_attr( $ccx_welcome['alt'] ); ?>">
         </button>
       </div>
     </div>
+    <?php endif; ?>
 
   </div><!-- /#bims-page -->
 
@@ -4444,7 +4446,7 @@
         if (!overlay || !closeBtn || !form) return;
 
         // BIMS's real published admissions WhatsApp number
-        var bimsAdmissionWhatsapp = "923333332467";
+        var bimsAdmissionWhatsapp = "<?php echo esc_js( ccx_whatsapp_number( 'BIMS' ) ); ?>";
 
         function bimsOpenModal(prefill) {
           overlay.classList.add("bims-modal-open");
